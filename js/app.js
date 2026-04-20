@@ -1,21 +1,21 @@
 const trabajos = [
   {
-    nombre: "Bootstrap",
+    nombre: "PRIMER PDF",
     unidad: "u1",
     tipo: "📄 PDF",
-    link: "trabajos/unidad1/bootstrap.pdf"
+    link: "trabajos/unidad1/primer.pdf"
   },
   {
-    nombre: "Moran y Geary",
+    nombre: "SEGUNDO PDF",
     unidad: "u1",
     tipo: "📄 PDF",
-    link: "trabajos/unidad1/moran.pdf"
+    link: "trabajos/unidad1/segundo.pdf"
   },
   {
-    nombre: "Análisis Espacial",
+    nombre: "TERCER PDF",
     unidad: "u2",
     tipo: "📄 PDF",
-    link: "trabajos/unidad2/analisis.pdf"
+    link: "trabajos/unidad2/tercero.pdf"
   }
 ];
 
