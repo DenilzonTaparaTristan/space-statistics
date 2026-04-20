@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Space Statistics</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+<header>
+  <h1>📊 Space Statistics</h1>
+  <p>Portafolio de Estadística Espacial</p>
+</header>
+
+<section class="dashboard">
+  <div class="card">📁 Trabajos: <span id="total"></span></div>
+  <div class="card">📚 Unidades: 2</div>
+</section>
+
+<section class="filters">
+  <button onclick="filtrar('all')">Todos</button>
+  <button onclick="filtrar('u1')">Unidad 1</button>
+  <button onclick="filtrar('u2')">Unidad 2</button>
+</section>
+
+<section class="search">
+  <input type="text" id="buscador" placeholder="Buscar trabajo...">
+</section>
+
+<section id="trabajos" class="grid"></section>
+
+<script src="js/app.js"></script>
+
+</body>
+</html>
