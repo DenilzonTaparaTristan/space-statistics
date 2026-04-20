@@ -1,21 +1,10 @@
 const trabajos = [
   {
-    nombre: "PRIMER PDF",
+    nombre: "Análisis Espacial de Cultivos Cosechados",
     unidad: "u1",
-    tipo: "📄 PDF",
-    link: "trabajos/unidad1/primer.pdf"
-  },
-  {
-    nombre: "SEGUNDO PDF",
-    unidad: "u1",
-    tipo: "📄 PDF",
-    link: "trabajos/unidad1/segundo.pdf"
-  },
-  {
-    nombre: "TERCER PDF",
-    unidad: "u2",
-    tipo: "📄 PDF",
-    link: "trabajos/unidad2/tercero.pdf"
+    descripcion: "Estudio basado en el Censo Nacional Agropecuario (ENA 2014-2024), analizando producción, venta y consumo de cultivos cosechados en unidades agropecuarias del Perú.",
+    pdf: "trabajos/unidad1/analisis-espacial/analisis.pdf",
+    codigo: "trabajos/unidad1/analisis-espacial/codigo.R"
   }
 ];
 
@@ -26,10 +15,20 @@ function mostrar(data) {
 
   data.forEach(t => {
     contenedor.innerHTML += `
-      <div class="card">
+      <div class="card trabajo-pro">
         <h3>${t.nombre}</h3>
-        <p>${t.tipo}</p>
-        <a href="${t.link}" target="_blank">Abrir</a>
+
+        <p class="desc">${t.descripcion}</p>
+
+        <div class="botones">
+          <a href="${t.pdf}" target="_blank">📄 Ver PDF</a>
+          <a href="${t.pdf}" download>⬇ Descargar PDF</a>
+        </div>
+
+        <div class="botones">
+          <a href="${t.codigo}" target="_blank">💻 Ver Código</a>
+          <a href="${t.codigo}" download>⬇ Descargar Código</a>
+        </div>
       </div>
     `;
   });
