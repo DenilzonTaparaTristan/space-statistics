@@ -2,94 +2,381 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Space Statistics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Space Statistics | Portafolio Académico</title>
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar">
-  <h2>📊 Space Statistics</h2>
-  <ul>
-    <li><a href="#">Inicio</a></li>
-    <li><a href="#perfil">Perfil</a></li>
-    <li><a href="#trabajos">Trabajos</a></li>
+<canvas id="starfield"></canvas>
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+
+<!-- ══════════ NAVBAR ══════════ -->
+<nav class="navbar" id="navbar">
+  <div class="nav-brand">
+    <div class="nav-dots"><span></span><span></span><span></span></div>
+    <span class="nav-title">Space<em>Stats</em></span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#inicio"   class="nav-link active">Inicio</a></li>
+    <li><a href="#perfil"   class="nav-link">Perfil</a></li>
+    <li><a href="#temas"    class="nav-link">Temas</a></li>
+    <li><a href="#trabajos" class="nav-link">Trabajos</a></li>
   </ul>
+  <div class="nav-pill">
+    <span class="npill-dot"></span><span>2026</span>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <h1>Portafolio de Estadística Espacial</h1>
-  <p>Análisis espacial y geoestadística aplicada</p>
+<!-- ══════════════════════════════════════════════════════
+     HERO — insignias a los costados del bloque central
+     ══════════════════════════════════════════════════════ -->
+<section class="hero" id="inicio">
+  <div class="hero-grid-bg"></div>
+
+  <!-- ▌INSIGNIA IZQUIERDA — Escuela Profesional -->
+  <aside class="hero-ins hero-ins-left">
+    <div class="ins-frame" onclick="document.getElementById('fileIzq').click()" title="Clic para subir imagen">
+      <div class="ins-placeholder" id="phIzq">
+        <svg viewBox="0 0 64 64" width="52" height="52" fill="none">
+          <rect x="8" y="8" width="48" height="48" rx="10"
+                stroke="currentColor" stroke-width="1.4" opacity="0.35"/>
+          <circle cx="32" cy="26" r="10"
+                  stroke="currentColor" stroke-width="1.4" opacity="0.55"/>
+          <path d="M12 52 Q32 38 52 52"
+                stroke="currentColor" stroke-width="1.4" fill="none" opacity="0.35"/>
+          <text x="32" y="60" text-anchor="middle"
+                font-size="7" fill="currentColor" opacity="0.4"
+                font-family="monospace">imagen</text>
+        </svg>
+        <p>Clic para<br>subir escudo</p>
+      </div>
+      <input type="file" id="fileIzq" accept="image/*"
+             style="display:none" onchange="cargarInsignia('izq',this)">
+      <img id="imgIzq" class="ins-img hidden" alt="Escudo Escuela Profesional">
+    </div>
+    <div class="ins-label">
+      <strong>Escuela Profesional</strong>
+      <span>Estadística e Informática</span>
+    </div>
+  </aside>
+
+  <!-- ▌CENTRO -->
+  <div class="hero-center">
+
+    <!-- Bloque institucional -->
+    <div class="hero-inst">
+      <p class="inst-uni">UNIVERSIDAD NACIONAL DEL ALTIPLANO</p>
+      <p class="inst-esc">Escuela Profesional de Estadística e Informática</p>
+    </div>
+
+    <div class="hero-eyebrow">
+      <span class="ey-dot"></span>
+      Estadística Espacial &nbsp;·&nbsp; Período 2026
+    </div>
+
+    <h1 class="hero-h1">
+      Portafolio<br><em>Académico</em>
+    </h1>
+    <p class="hero-course">de Estadística Espacial</p>
+
+    <p class="hero-desc">
+      Análisis espacial, autocorrelación, modelos geoestadísticos y
+      visualización de datos georreferenciados — aplicados al territorio peruano.
+    </p>
+
+    <div class="hero-btns">
+      <a href="#trabajos" class="btn-main">Ver Trabajos <span>→</span></a>
+      <a href="#perfil"   class="btn-sec">Sobre mí</a>
+    </div>
+
+    <div class="hero-counts">
+      <div class="hc-item">
+        <strong id="counterWorks">0</strong><span>Trabajos</span>
+      </div>
+      <div class="hc-sep"></div>
+      <div class="hc-item"><strong>2</strong><span>Unidades</span></div>
+      <div class="hc-sep"></div>
+      <div class="hc-item"><strong>R</strong><span>Lenguaje</span></div>
+    </div>
+
+  </div><!-- /hero-center -->
+
+  <!-- ▌INSIGNIA DERECHA — Universidad -->
+  <aside class="hero-ins hero-ins-right">
+    <div class="ins-frame" onclick="document.getElementById('fileDer').click()" title="Clic para subir imagen">
+      <div class="ins-placeholder" id="phDer">
+        <svg viewBox="0 0 64 64" width="52" height="52" fill="none">
+          <rect x="8" y="8" width="48" height="48" rx="10"
+                stroke="currentColor" stroke-width="1.4" opacity="0.35"/>
+          <circle cx="32" cy="26" r="10"
+                  stroke="currentColor" stroke-width="1.4" opacity="0.55"/>
+          <path d="M12 52 Q32 38 52 52"
+                stroke="currentColor" stroke-width="1.4" fill="none" opacity="0.35"/>
+          <text x="32" y="60" text-anchor="middle"
+                font-size="7" fill="currentColor" opacity="0.4"
+                font-family="monospace">imagen</text>
+        </svg>
+        <p>Clic para<br>subir escudo</p>
+      </div>
+      <input type="file" id="fileDer" accept="image/*"
+             style="display:none" onchange="cargarInsignia('der',this)">
+      <img id="imgDer" class="ins-img hidden" alt="Escudo Universidad Nacional del Altiplano">
+    </div>
+    <div class="ins-label">
+      <strong>Universidad Nacional</strong>
+      <span>del Altiplano — Puno</span>
+    </div>
+  </aside>
+
 </section>
 
-<!-- INFORMACIÓN PRINCIPAL -->
-<section class="info-principal">
+<!-- ══════════════════════════════════════════════════════
+     PERFIL
+     ══════════════════════════════════════════════════════ -->
+<section class="sec perfil-sec" id="perfil">
+  <div class="sec-label"><span></span>Perfil Académico<span></span></div>
+  <h2 class="sec-title">El Estudiante</h2>
 
-  <div class="info-card">
-    <h3>👤 Estudiante</h3>
-    <p><strong>Nombre:</strong> Denilzon Robinho Tapara Tristan</p>
-    <p><strong>Carrera:</strong> Estadística e Informática</p>
-    <p><strong>Universidad:</strong> Universidad Nacional del Altiplano</p>
+  <div class="pgrid">
+
+    <!-- Estudiante -->
+    <div class="pcard pcard-a">
+      <div class="pcard-bar"></div>
+      <div class="pcard-avatar-row">
+        <div class="avatar-dia"><span>DT</span></div>
+        <div class="avatar-st"><span class="pulse-dot"></span>Activo 2026</div>
+      </div>
+      <h3 class="pcard-h3">Denilzon Robinho<br><strong>Tapara Tristan</strong></h3>
+      <div class="chip-row">
+        <span class="chip chip-b">Estadística e Informática</span>
+        <span class="chip chip-t">UNA Puno</span>
+      </div>
+      <ul class="pcard-ul">
+        <li><span class="li-b">◉</span>Universidad Nacional del Altiplano</li>
+        <li><span class="li-b">◎</span>Puno, Perú</li>
+        <li><span class="li-b">◈</span>Período 2026</li>
+      </ul>
+    </div>
+
+    <!-- Curso -->
+    <div class="pcard pcard-b">
+      <div class="pcard-bar bar-teal"></div>
+      <svg class="pcard-cicon" viewBox="0 0 56 56" fill="none">
+        <circle cx="28" cy="28" r="22" stroke="currentColor" stroke-width="1.4" opacity="0.25"/>
+        <circle cx="28" cy="28" r="10" stroke="currentColor" stroke-width="1.4"/>
+        <circle cx="28" cy="28" r="3" fill="currentColor"/>
+        <line x1="6"  y1="28" x2="50" y2="28" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+        <line x1="28" y1="6"  x2="28" y2="50" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+        <circle cx="18" cy="20" r="2.5" fill="currentColor" opacity="0.65"/>
+        <circle cx="40" cy="36" r="2.5" fill="currentColor" opacity="0.65"/>
+      </svg>
+      <h3 class="pcard-ctitle">Estadística Espacial</h3>
+      <div class="pcard-meta">
+        <div class="pmeta-row"><span>Docente</span><strong>Fred Torres Cruz</strong></div>
+        <div class="pmeta-row"><span>Período</span><strong>2026</strong></div>
+        <div class="pmeta-row"><span>Modalidad</span><strong>Presencial</strong></div>
+      </div>
+      <p class="pcard-p">
+        Técnicas de análisis espacial, autocorrelación, modelos de regresión
+        espacial y geoestadística aplicada a datos georreferenciados del Perú.
+      </p>
+    </div>
+
+    <!-- Herramientas -->
+    <div class="pcard pcard-c">
+      <div class="pcard-bar bar-coral"></div>
+      <h3 class="pcard-sh3">Herramientas & Tecnologías</h3>
+      <div class="slist">
+        <div class="srow">
+          <span class="stag">R</span><span>R / RStudio</span>
+          <div class="strack"><div class="sfill" style="width:85%"></div></div>
+        </div>
+        <div class="srow">
+          <span class="stag">Py</span><span>Python</span>
+          <div class="strack"><div class="sfill sf2" style="width:70%"></div></div>
+        </div>
+        <div class="srow">
+          <span class="stag">GIS</span><span>QGIS / ArcGIS</span>
+          <div class="strack"><div class="sfill sf3" style="width:75%"></div></div>
+        </div>
+        <div class="srow">
+          <span class="stag">SP</span><span>Spatial Analysis</span>
+          <div class="strack"><div class="sfill" style="width:80%"></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     TEMAS DEL CURSO
+     ══════════════════════════════════════════════════════ -->
+<section class="sec temas-sec" id="temas">
+  <div class="sec-label"><span></span>Contenido del Curso<span></span></div>
+  <h2 class="sec-title">Temas & Subtemas</h2>
+
+  <div class="tgrid">
+
+    <div class="tcard tc1">
+      <div class="tc-num">01</div>
+      <svg class="tc-ico" viewBox="0 0 50 50" fill="none">
+        <circle cx="25" cy="25" r="19" stroke="currentColor" stroke-width="1.2" opacity="0.25"/>
+        <circle cx="17" cy="18" r="3" fill="currentColor"/>
+        <circle cx="33" cy="15" r="3" fill="currentColor"/>
+        <circle cx="13" cy="33" r="3" fill="currentColor"/>
+        <circle cx="36" cy="32" r="3" fill="currentColor"/>
+        <circle cx="25" cy="39" r="2.5" fill="currentColor" opacity="0.6"/>
+        <line x1="17" y1="18" x2="33" y2="15" stroke="currentColor" stroke-width="0.8" opacity="0.45"/>
+        <line x1="17" y1="18" x2="13" y2="33" stroke="currentColor" stroke-width="0.8" opacity="0.45"/>
+        <line x1="33" y1="15" x2="36" y2="32" stroke="currentColor" stroke-width="0.8" opacity="0.45"/>
+        <line x1="13" y1="33" x2="25" y2="39" stroke="currentColor" stroke-width="0.8" opacity="0.45"/>
+        <line x1="36" y1="32" x2="25" y2="39" stroke="currentColor" stroke-width="0.8" opacity="0.45"/>
+      </svg>
+      <h3>Análisis Espacial</h3>
+      <ul>
+        <li>Autocorrelación espacial (Moran's I)</li>
+        <li>Matrices de vecindad (Queen / Rook)</li>
+        <li>LISA — Estadísticos locales</li>
+        <li>Variograma y semivariograma</li>
+        <li>Análisis de puntos (KDE)</li>
+      </ul>
+      <span class="tc-tag">Unidad 1</span>
+    </div>
+
+    <div class="tcard tc2">
+      <div class="tc-num">02</div>
+      <svg class="tc-ico" viewBox="0 0 50 50" fill="none">
+        <rect x="5" y="5" width="40" height="40" rx="5" stroke="currentColor" stroke-width="1.2" opacity="0.25"/>
+        <rect x="9"  y="31" width="7" height="13" fill="currentColor" opacity="0.55"/>
+        <rect x="21" y="21" width="7" height="23" fill="currentColor" opacity="0.75"/>
+        <rect x="33" y="11" width="7" height="33" fill="currentColor"/>
+        <line x1="5" y1="44" x2="45" y2="44" stroke="currentColor" stroke-width="1.2"/>
+      </svg>
+      <h3>Geoestadística</h3>
+      <ul>
+        <li>Kriging ordinario y universal</li>
+        <li>Modelado de variogramas</li>
+        <li>Interpolación espacial</li>
+        <li>Simulación geoestadística</li>
+        <li>Co-kriging multivariado</li>
+      </ul>
+      <span class="tc-tag">Unidad 2</span>
+    </div>
+
+    <div class="tcard tc3">
+      <div class="tc-num">03</div>
+      <svg class="tc-ico" viewBox="0 0 50 50" fill="none">
+        <polygon points="25,5 45,40 5,40" stroke="currentColor" stroke-width="1.2" fill="none" opacity="0.3"/>
+        <circle cx="25" cy="25" r="8" stroke="currentColor" stroke-width="1.2" opacity="0.65"/>
+        <circle cx="25" cy="25" r="3" fill="currentColor"/>
+        <line x1="25" y1="5"  x2="25" y2="17" stroke="currentColor" stroke-width="0.8" opacity="0.45"/>
+        <line x1="45" y1="40" x2="33" y2="32" stroke="currentColor" stroke-width="0.8" opacity="0.45"/>
+        <line x1="5"  y1="40" x2="17" y2="32" stroke="currentColor" stroke-width="0.8" opacity="0.45"/>
+      </svg>
+      <h3>Modelos Espaciales</h3>
+      <ul>
+        <li>Regresión espacial (SAR / CAR)</li>
+        <li>GWR — Regresión geográficamente ponderada</li>
+        <li>Modelos de panel espacial</li>
+        <li>Econometría espacial</li>
+        <li>Pruebas de dependencia espacial</li>
+      </ul>
+      <span class="tc-tag">Unidad 1 &amp; 2</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     TRABAJOS
+     ══════════════════════════════════════════════════════ -->
+<section class="sec trabajos-sec" id="trabajos">
+  <div class="sec-label"><span></span>Producción Académica<span></span></div>
+  <h2 class="sec-title">Trabajos Entregados</h2>
+
+  <div class="dash-row">
+    <div class="dstat"><strong id="totalTrabajos">0</strong><span>Total</span></div>
+    <div class="dstat"><strong>2</strong><span>Unidades</span></div>
+    <div class="dstat"><strong id="u1c">0</strong><span>Unidad 1</span></div>
+    <div class="dstat"><strong id="u2c">0</strong><span>Unidad 2</span></div>
   </div>
 
-  <div class="info-card">
-    <h3>📘 Curso</h3>
-    <p><strong>Curso:</strong> Estadística Espacial</p>
-    <p><strong>Docente:</strong> Fred Torres Cruz</p>
-    <p><strong>Periodo:</strong> 2026</p>
+  <div class="trab-controls">
+    <div class="filter-row">
+      <button class="fbtn active" onclick="filtrar('all')" data-f="all">
+        <span class="fdot fdall"></span>Todos
+      </button>
+      <button class="fbtn" onclick="filtrar('u1')" data-f="u1">
+        <span class="fdot fdu1"></span>Unidad 1
+      </button>
+      <button class="fbtn" onclick="filtrar('u2')" data-f="u2">
+        <span class="fdot fdu2"></span>Unidad 2
+      </button>
+    </div>
+    <div class="search-box">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2.2">
+        <circle cx="11" cy="11" r="8"/>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input type="text" id="buscador" placeholder="Buscar trabajo…">
+    </div>
   </div>
 
-</section>
+  <div class="trabajos-grid" id="trabajos-grid"></div>
 
-<!-- DESCRIPCIÓN -->
-<section class="descripcion">
-  <h2>🧠 Descripción</h2>
-  <p>
-    Este portafolio presenta el desarrollo de técnicas de análisis espacial,
-    incluyendo autocorrelación, modelos espaciales y geoestadística aplicada.
-  </p>
-</section>
-
-<!-- SUBTEMAS -->
-<section class="subtemas">
-  <h2>📚 Subtemas del Curso</h2>
-
-  <div class="cards-sub">
-    <div class="sub-card">📍 Análisis Espacial</div>
-    <div class="sub-card">🌐 Geoestadística</div>
+  <div class="empty-state hidden" id="emptyState">
+    <p class="empty-ico">◌</p>
+    <p>No se encontraron trabajos</p>
   </div>
-
 </section>
 
-<!-- DASHBOARD -->
-<section class="dashboard">
-  <div class="card">📁 Trabajos: <span id="total"></span></div>
-  <div class="card">📚 Unidades: 2</div>
-</section>
-
-<!-- FILTROS -->
-<section class="filters">
-  <button onclick="filtrar('all')">Todos</button>
-  <button onclick="filtrar('u1')">Unidad 1</button>
-  <button onclick="filtrar('u2')">Unidad 2</button>
-</section>
-
-<!-- BUSCADOR -->
-<section class="search">
-  <input type="text" id="buscador" placeholder="Buscar trabajo...">
-</section>
-
-<!-- TRABAJOS -->
-<section id="trabajos" class="grid"></section>
-
-<!-- FOOTER -->
-<footer>
-  <p>© 2026 - Portafolio Académico</p>
-  <p>Estadística Espacial | Robinho</p>
+<!-- ══════════════════════════════════════════════════════
+     FOOTER
+     ══════════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="ft-brand">
+      <span class="nav-title">Space<em>Stats</em></span>
+      <p>Portafolio de Estadística Espacial<br>
+         Universidad Nacional del Altiplano · 2026</p>
+    </div>
+    <div class="ft-nav">
+      <strong>Navegación</strong>
+      <a href="#inicio">Inicio</a>
+      <a href="#perfil">Perfil</a>
+      <a href="#temas">Temas</a>
+      <a href="#trabajos">Trabajos</a>
+    </div>
+    <div class="ft-info">
+      <strong>Información</strong>
+      <p>Denilzon R. Tapara Tristan</p>
+      <p>Estadística e Informática</p>
+      <p>Docente: Fred Torres Cruz</p>
+      <a href="https://github.com/denilzontaparatristan/space-statistics"
+         target="_blank" rel="noopener" class="gh-link">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+        </svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+  <div class="footer-copy">
+    © 2026 — Denilzon Robinho Tapara Tristan · Estadística e Informática · UNA Puno
+  </div>
 </footer>
 
 <script src="js/app.js"></script>
+<script src="js/effects.js"></script>
 </body>
 </html>
