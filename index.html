@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Space Statistics | Portafolio Académico</title>
+  <title>Space Statistics | Portafolio Académico · UNA Puno</title>
   <link rel="stylesheet" href="css/styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,400;1,9..144,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -15,7 +15,20 @@
 <div class="cursor-dot"></div>
 <div class="cursor-ring"></div>
 
-<!-- ══════════ NAVBAR ══════════ -->
+<!-- ════════════════════════════════════════════
+     LOADER de entrada
+     ════════════════════════════════════════════ -->
+<div class="page-loader" id="pageLoader">
+  <div class="loader-inner">
+    <div class="loader-orb"></div>
+    <p class="loader-text">Space<em>Stats</em></p>
+    <div class="loader-bar"><div class="loader-fill"></div></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     NAVBAR
+     ════════════════════════════════════════════ -->
 <nav class="navbar" id="navbar">
   <div class="nav-brand">
     <div class="nav-dots"><span></span><span></span><span></span></div>
@@ -28,39 +41,36 @@
     <li><a href="#trabajos" class="nav-link">Trabajos</a></li>
   </ul>
   <div class="nav-pill">
-    <span class="npill-dot"></span><span>2026</span>
+    <span class="npill-dot"></span><span>UNA · 2026</span>
   </div>
-  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+  <button class="nav-toggle" id="navToggle" aria-label="Menú">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
-<!-- ══════════════════════════════════════════════════════
-     HERO — insignias a los costados del bloque central
-     ══════════════════════════════════════════════════════ -->
+<!-- ════════════════════════════════════════════
+     HERO — insignias fijas + portada principal
+     ════════════════════════════════════════════ -->
 <section class="hero" id="inicio">
   <div class="hero-grid-bg"></div>
+  <div class="hero-glow hero-glow-l"></div>
+  <div class="hero-glow hero-glow-r"></div>
 
-  <!-- ▌INSIGNIA IZQUIERDA — Escuela Profesional -->
+  <!-- INSIGNIA IZQUIERDA — Escuela Profesional -->
   <aside class="hero-ins hero-ins-left">
-    <div class="ins-frame" onclick="document.getElementById('fileIzq').click()" title="Clic para subir imagen">
-      <div class="ins-placeholder" id="phIzq">
-        <svg viewBox="0 0 64 64" width="52" height="52" fill="none">
-          <rect x="8" y="8" width="48" height="48" rx="10"
-                stroke="currentColor" stroke-width="1.4" opacity="0.35"/>
-          <circle cx="32" cy="26" r="10"
-                  stroke="currentColor" stroke-width="1.4" opacity="0.55"/>
-          <path d="M12 52 Q32 38 52 52"
-                stroke="currentColor" stroke-width="1.4" fill="none" opacity="0.35"/>
-          <text x="32" y="60" text-anchor="middle"
-                font-size="7" fill="currentColor" opacity="0.4"
-                font-family="monospace">imagen</text>
+    <div class="ins-frame">
+      <img src="assets/facultad.png"
+           alt="Escudo Escuela Profesional de Estadística e Informática"
+           class="ins-img"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="ins-fallback">
+        <svg viewBox="0 0 64 64" width="44" height="44" fill="none">
+          <rect x="8" y="8" width="48" height="48" rx="10" stroke="currentColor" stroke-width="1.4" opacity="0.4"/>
+          <circle cx="32" cy="27" r="9" stroke="currentColor" stroke-width="1.4" opacity="0.6"/>
+          <path d="M13 52 Q32 38 51 52" stroke="currentColor" stroke-width="1.4" fill="none" opacity="0.4"/>
         </svg>
-        <p>Clic para<br>subir escudo</p>
+        <span>facultad.png</span>
       </div>
-      <input type="file" id="fileIzq" accept="image/*"
-             style="display:none" onchange="cargarInsignia('izq',this)">
-      <img id="imgIzq" class="ins-img hidden" alt="Escudo Escuela Profesional">
     </div>
     <div class="ins-label">
       <strong>Escuela Profesional</strong>
@@ -68,12 +78,13 @@
     </div>
   </aside>
 
-  <!-- ▌CENTRO -->
+  <!-- CENTRO -->
   <div class="hero-center">
 
-    <!-- Bloque institucional -->
-    <div class="hero-inst">
+    <div class="hero-inst-block">
+      <div class="inst-deco"></div>
       <p class="inst-uni">UNIVERSIDAD NACIONAL DEL ALTIPLANO</p>
+      <div class="inst-sep"></div>
       <p class="inst-esc">Escuela Profesional de Estadística e Informática</p>
     </div>
 
@@ -85,50 +96,48 @@
     <h1 class="hero-h1">
       Portafolio<br><em>Académico</em>
     </h1>
-    <p class="hero-course">de Estadística Espacial</p>
+    <p class="hero-sub">de Estadística Espacial</p>
 
     <p class="hero-desc">
       Análisis espacial, autocorrelación, modelos geoestadísticos y
-      visualización de datos georreferenciados — aplicados al territorio peruano.
+      visualización de datos georreferenciados aplicados al territorio peruano.
     </p>
 
     <div class="hero-btns">
-      <a href="#trabajos" class="btn-main">Ver Trabajos <span>→</span></a>
-      <a href="#perfil"   class="btn-sec">Sobre mí</a>
+      <a href="#trabajos" class="btn-main">
+        <span class="btn-ripple"></span>
+        Ver Trabajos <span class="btn-arr">→</span>
+      </a>
+      <a href="#perfil" class="btn-sec">Sobre mí</a>
     </div>
 
-    <div class="hero-counts">
-      <div class="hc-item">
-        <strong id="counterWorks">0</strong><span>Trabajos</span>
-      </div>
-      <div class="hc-sep"></div>
-      <div class="hc-item"><strong>2</strong><span>Unidades</span></div>
-      <div class="hc-sep"></div>
-      <div class="hc-item"><strong>R</strong><span>Lenguaje</span></div>
+    <div class="hero-counters">
+      <div class="hcnt"><strong id="counterWorks">0</strong><span>Trabajos</span></div>
+      <div class="hcnt-sep"></div>
+      <div class="hcnt"><strong>2</strong><span>Unidades</span></div>
+      <div class="hcnt-sep"></div>
+      <div class="hcnt"><strong>R</strong><span>Lenguaje</span></div>
+      <div class="hcnt-sep"></div>
+      <div class="hcnt"><strong>2026</strong><span>Período</span></div>
     </div>
 
-  </div><!-- /hero-center -->
+  </div>
 
-  <!-- ▌INSIGNIA DERECHA — Universidad -->
+  <!-- INSIGNIA DERECHA — Universidad -->
   <aside class="hero-ins hero-ins-right">
-    <div class="ins-frame" onclick="document.getElementById('fileDer').click()" title="Clic para subir imagen">
-      <div class="ins-placeholder" id="phDer">
-        <svg viewBox="0 0 64 64" width="52" height="52" fill="none">
-          <rect x="8" y="8" width="48" height="48" rx="10"
-                stroke="currentColor" stroke-width="1.4" opacity="0.35"/>
-          <circle cx="32" cy="26" r="10"
-                  stroke="currentColor" stroke-width="1.4" opacity="0.55"/>
-          <path d="M12 52 Q32 38 52 52"
-                stroke="currentColor" stroke-width="1.4" fill="none" opacity="0.35"/>
-          <text x="32" y="60" text-anchor="middle"
-                font-size="7" fill="currentColor" opacity="0.4"
-                font-family="monospace">imagen</text>
+    <div class="ins-frame">
+      <img src="assets/universidad.png"
+           alt="Escudo Universidad Nacional del Altiplano"
+           class="ins-img"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="ins-fallback">
+        <svg viewBox="0 0 64 64" width="44" height="44" fill="none">
+          <rect x="8" y="8" width="48" height="48" rx="10" stroke="currentColor" stroke-width="1.4" opacity="0.4"/>
+          <circle cx="32" cy="27" r="9" stroke="currentColor" stroke-width="1.4" opacity="0.6"/>
+          <path d="M13 52 Q32 38 51 52" stroke="currentColor" stroke-width="1.4" fill="none" opacity="0.4"/>
         </svg>
-        <p>Clic para<br>subir escudo</p>
+        <span>universidad.png</span>
       </div>
-      <input type="file" id="fileDer" accept="image/*"
-             style="display:none" onchange="cargarInsignia('der',this)">
-      <img id="imgDer" class="ins-img hidden" alt="Escudo Universidad Nacional del Altiplano">
     </div>
     <div class="ins-label">
       <strong>Universidad Nacional</strong>
@@ -136,18 +145,23 @@
     </div>
   </aside>
 
+  <!-- scroll indicator -->
+  <div class="hero-scroll-hint">
+    <div class="scroll-mouse"><div class="scroll-dot"></div></div>
+    <span>Desplaza</span>
+  </div>
+
 </section>
 
-<!-- ══════════════════════════════════════════════════════
+<!-- ════════════════════════════════════════════
      PERFIL
-     ══════════════════════════════════════════════════════ -->
+     ════════════════════════════════════════════ -->
 <section class="sec perfil-sec" id="perfil">
   <div class="sec-label"><span></span>Perfil Académico<span></span></div>
   <h2 class="sec-title">El Estudiante</h2>
 
   <div class="pgrid">
 
-    <!-- Estudiante -->
     <div class="pcard pcard-a">
       <div class="pcard-bar"></div>
       <div class="pcard-avatar-row">
@@ -161,28 +175,30 @@
       </div>
       <ul class="pcard-ul">
         <li><span class="li-b">◉</span>Universidad Nacional del Altiplano</li>
-        <li><span class="li-b">◎</span>Puno, Perú</li>
+        <li><span class="li-b">◎</span>Puno, Perú — 3 827 m s. n. m.</li>
         <li><span class="li-b">◈</span>Período 2026</li>
       </ul>
     </div>
 
-    <!-- Curso -->
     <div class="pcard pcard-b">
       <div class="pcard-bar bar-teal"></div>
       <svg class="pcard-cicon" viewBox="0 0 56 56" fill="none">
-        <circle cx="28" cy="28" r="22" stroke="currentColor" stroke-width="1.4" opacity="0.25"/>
+        <circle cx="28" cy="28" r="22" stroke="currentColor" stroke-width="1.4" opacity="0.22"/>
         <circle cx="28" cy="28" r="10" stroke="currentColor" stroke-width="1.4"/>
         <circle cx="28" cy="28" r="3" fill="currentColor"/>
-        <line x1="6"  y1="28" x2="50" y2="28" stroke="currentColor" stroke-width="1" opacity="0.4"/>
-        <line x1="28" y1="6"  x2="28" y2="50" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+        <line x1="6" y1="28" x2="50" y2="28" stroke="currentColor" stroke-width="1" opacity="0.38"/>
+        <line x1="28" y1="6" x2="28" y2="50" stroke="currentColor" stroke-width="1" opacity="0.38"/>
         <circle cx="18" cy="20" r="2.5" fill="currentColor" opacity="0.65"/>
         <circle cx="40" cy="36" r="2.5" fill="currentColor" opacity="0.65"/>
+        <circle cx="38" cy="18" r="2" fill="currentColor" opacity="0.45"/>
+        <circle cx="16" cy="37" r="2" fill="currentColor" opacity="0.45"/>
       </svg>
       <h3 class="pcard-ctitle">Estadística Espacial</h3>
       <div class="pcard-meta">
         <div class="pmeta-row"><span>Docente</span><strong>Fred Torres Cruz</strong></div>
         <div class="pmeta-row"><span>Período</span><strong>2026</strong></div>
         <div class="pmeta-row"><span>Modalidad</span><strong>Presencial</strong></div>
+        <div class="pmeta-row"><span>Créditos</span><strong>4</strong></div>
       </div>
       <p class="pcard-p">
         Técnicas de análisis espacial, autocorrelación, modelos de regresión
@@ -190,56 +206,46 @@
       </p>
     </div>
 
-    <!-- Herramientas -->
     <div class="pcard pcard-c">
       <div class="pcard-bar bar-coral"></div>
       <h3 class="pcard-sh3">Herramientas & Tecnologías</h3>
       <div class="slist">
-        <div class="srow">
-          <span class="stag">R</span><span>R / RStudio</span>
-          <div class="strack"><div class="sfill" style="width:85%"></div></div>
-        </div>
-        <div class="srow">
-          <span class="stag">Py</span><span>Python</span>
-          <div class="strack"><div class="sfill sf2" style="width:70%"></div></div>
-        </div>
-        <div class="srow">
-          <span class="stag">GIS</span><span>QGIS / ArcGIS</span>
-          <div class="strack"><div class="sfill sf3" style="width:75%"></div></div>
-        </div>
-        <div class="srow">
-          <span class="stag">SP</span><span>Spatial Analysis</span>
-          <div class="strack"><div class="sfill" style="width:80%"></div></div>
-        </div>
+        <div class="srow"><span class="stag">R</span><span>R / RStudio</span><div class="strack"><div class="sfill" style="width:85%"></div></div></div>
+        <div class="srow"><span class="stag">Py</span><span>Python / GeoPandas</span><div class="strack"><div class="sfill sf2" style="width:65%"></div></div></div>
+        <div class="srow"><span class="stag">GIS</span><span>QGIS / ArcGIS</span><div class="strack"><div class="sfill sf3" style="width:75%"></div></div></div>
+        <div class="srow"><span class="stag">SP</span><span>spdep / spatialreg</span><div class="strack"><div class="sfill" style="width:80%"></div></div></div>
+        <div class="srow"><span class="stag">GG</span><span>ggplot2 / tmap</span><div class="strack"><div class="sfill sf2" style="width:78%"></div></div></div>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════
+<!-- ════════════════════════════════════════════
      TEMAS DEL CURSO
-     ══════════════════════════════════════════════════════ -->
+     ════════════════════════════════════════════ -->
 <section class="sec temas-sec" id="temas">
   <div class="sec-label"><span></span>Contenido del Curso<span></span></div>
   <h2 class="sec-title">Temas & Subtemas</h2>
+  <p class="sec-intro">
+    El curso cubre el análisis cuantitativo de fenómenos georreferenciados,
+    desde la autocorrelación espacial hasta la geoestadística aplicada.
+  </p>
 
   <div class="tgrid">
 
     <div class="tcard tc1">
       <div class="tc-num">01</div>
       <svg class="tc-ico" viewBox="0 0 50 50" fill="none">
-        <circle cx="25" cy="25" r="19" stroke="currentColor" stroke-width="1.2" opacity="0.25"/>
-        <circle cx="17" cy="18" r="3" fill="currentColor"/>
-        <circle cx="33" cy="15" r="3" fill="currentColor"/>
-        <circle cx="13" cy="33" r="3" fill="currentColor"/>
-        <circle cx="36" cy="32" r="3" fill="currentColor"/>
+        <circle cx="25" cy="25" r="19" stroke="currentColor" stroke-width="1.2" opacity="0.22"/>
+        <circle cx="17" cy="18" r="3" fill="currentColor"/><circle cx="33" cy="15" r="3" fill="currentColor"/>
+        <circle cx="13" cy="33" r="3" fill="currentColor"/><circle cx="36" cy="32" r="3" fill="currentColor"/>
         <circle cx="25" cy="39" r="2.5" fill="currentColor" opacity="0.6"/>
-        <line x1="17" y1="18" x2="33" y2="15" stroke="currentColor" stroke-width="0.8" opacity="0.45"/>
-        <line x1="17" y1="18" x2="13" y2="33" stroke="currentColor" stroke-width="0.8" opacity="0.45"/>
-        <line x1="33" y1="15" x2="36" y2="32" stroke="currentColor" stroke-width="0.8" opacity="0.45"/>
-        <line x1="13" y1="33" x2="25" y2="39" stroke="currentColor" stroke-width="0.8" opacity="0.45"/>
-        <line x1="36" y1="32" x2="25" y2="39" stroke="currentColor" stroke-width="0.8" opacity="0.45"/>
+        <line x1="17" y1="18" x2="33" y2="15" stroke="currentColor" stroke-width="0.8" opacity="0.42"/>
+        <line x1="17" y1="18" x2="13" y2="33" stroke="currentColor" stroke-width="0.8" opacity="0.42"/>
+        <line x1="33" y1="15" x2="36" y2="32" stroke="currentColor" stroke-width="0.8" opacity="0.42"/>
+        <line x1="13" y1="33" x2="25" y2="39" stroke="currentColor" stroke-width="0.8" opacity="0.42"/>
+        <line x1="36" y1="32" x2="25" y2="39" stroke="currentColor" stroke-width="0.8" opacity="0.42"/>
       </svg>
       <h3>Análisis Espacial</h3>
       <ul>
@@ -255,9 +261,9 @@
     <div class="tcard tc2">
       <div class="tc-num">02</div>
       <svg class="tc-ico" viewBox="0 0 50 50" fill="none">
-        <rect x="5" y="5" width="40" height="40" rx="5" stroke="currentColor" stroke-width="1.2" opacity="0.25"/>
-        <rect x="9"  y="31" width="7" height="13" fill="currentColor" opacity="0.55"/>
-        <rect x="21" y="21" width="7" height="23" fill="currentColor" opacity="0.75"/>
+        <rect x="5" y="5" width="40" height="40" rx="5" stroke="currentColor" stroke-width="1.2" opacity="0.22"/>
+        <rect x="9" y="31" width="7" height="13" fill="currentColor" opacity="0.52"/>
+        <rect x="21" y="21" width="7" height="23" fill="currentColor" opacity="0.72"/>
         <rect x="33" y="11" width="7" height="33" fill="currentColor"/>
         <line x1="5" y1="44" x2="45" y2="44" stroke="currentColor" stroke-width="1.2"/>
       </svg>
@@ -275,12 +281,12 @@
     <div class="tcard tc3">
       <div class="tc-num">03</div>
       <svg class="tc-ico" viewBox="0 0 50 50" fill="none">
-        <polygon points="25,5 45,40 5,40" stroke="currentColor" stroke-width="1.2" fill="none" opacity="0.3"/>
+        <polygon points="25,5 45,40 5,40" stroke="currentColor" stroke-width="1.2" fill="none" opacity="0.28"/>
         <circle cx="25" cy="25" r="8" stroke="currentColor" stroke-width="1.2" opacity="0.65"/>
         <circle cx="25" cy="25" r="3" fill="currentColor"/>
-        <line x1="25" y1="5"  x2="25" y2="17" stroke="currentColor" stroke-width="0.8" opacity="0.45"/>
-        <line x1="45" y1="40" x2="33" y2="32" stroke="currentColor" stroke-width="0.8" opacity="0.45"/>
-        <line x1="5"  y1="40" x2="17" y2="32" stroke="currentColor" stroke-width="0.8" opacity="0.45"/>
+        <line x1="25" y1="5" x2="25" y2="17" stroke="currentColor" stroke-width="0.8" opacity="0.42"/>
+        <line x1="45" y1="40" x2="33" y2="32" stroke="currentColor" stroke-width="0.8" opacity="0.42"/>
+        <line x1="5" y1="40" x2="17" y2="32" stroke="currentColor" stroke-width="0.8" opacity="0.42"/>
       </svg>
       <h3>Modelos Espaciales</h3>
       <ul>
@@ -296,13 +302,18 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════
+<!-- ════════════════════════════════════════════
      TRABAJOS
-     ══════════════════════════════════════════════════════ -->
+     ════════════════════════════════════════════ -->
 <section class="sec trabajos-sec" id="trabajos">
   <div class="sec-label"><span></span>Producción Académica<span></span></div>
   <h2 class="sec-title">Trabajos Entregados</h2>
+  <p class="sec-intro">
+    Cada trabajo incluye el informe PDF completo y el código fuente en R.
+    Los archivos se sirven directamente desde el repositorio GitHub.
+  </p>
 
+  <!-- Stats dashboard -->
   <div class="dash-row">
     <div class="dstat"><strong id="totalTrabajos">0</strong><span>Total</span></div>
     <div class="dstat"><strong>2</strong><span>Unidades</span></div>
@@ -310,45 +321,37 @@
     <div class="dstat"><strong id="u2c">0</strong><span>Unidad 2</span></div>
   </div>
 
+  <!-- Controles -->
   <div class="trab-controls">
     <div class="filter-row">
-      <button class="fbtn active" onclick="filtrar('all')" data-f="all">
-        <span class="fdot fdall"></span>Todos
-      </button>
-      <button class="fbtn" onclick="filtrar('u1')" data-f="u1">
-        <span class="fdot fdu1"></span>Unidad 1
-      </button>
-      <button class="fbtn" onclick="filtrar('u2')" data-f="u2">
-        <span class="fdot fdu2"></span>Unidad 2
-      </button>
+      <button class="fbtn active" onclick="filtrar('all')" data-f="all"><span class="fdot fdall"></span>Todos</button>
+      <button class="fbtn"        onclick="filtrar('u1')"  data-f="u1"><span class="fdot fdu1"></span>Unidad 1</button>
+      <button class="fbtn"        onclick="filtrar('u2')"  data-f="u2"><span class="fdot fdu2"></span>Unidad 2</button>
     </div>
     <div class="search-box">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
-           stroke="currentColor" stroke-width="2.2">
-        <circle cx="11" cy="11" r="8"/>
-        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
       </svg>
       <input type="text" id="buscador" placeholder="Buscar trabajo…">
     </div>
   </div>
 
+  <!-- Grid dinámico -->
   <div class="trabajos-grid" id="trabajos-grid"></div>
-
   <div class="empty-state hidden" id="emptyState">
-    <p class="empty-ico">◌</p>
-    <p>No se encontraron trabajos</p>
+    <p class="empty-ico">◌</p><p>No se encontraron trabajos</p>
   </div>
+
 </section>
 
-<!-- ══════════════════════════════════════════════════════
+<!-- ════════════════════════════════════════════
      FOOTER
-     ══════════════════════════════════════════════════════ -->
+     ════════════════════════════════════════════ -->
 <footer class="footer">
   <div class="footer-inner">
     <div class="ft-brand">
       <span class="nav-title">Space<em>Stats</em></span>
-      <p>Portafolio de Estadística Espacial<br>
-         Universidad Nacional del Altiplano · 2026</p>
+      <p>Portafolio de Estadística Espacial<br>Universidad Nacional del Altiplano · 2026</p>
     </div>
     <div class="ft-nav">
       <strong>Navegación</strong>
@@ -371,9 +374,7 @@
       </a>
     </div>
   </div>
-  <div class="footer-copy">
-    © 2026 — Denilzon Robinho Tapara Tristan · Estadística e Informática · UNA Puno
-  </div>
+  <div class="footer-copy">© 2026 — Denilzon Robinho Tapara Tristan · Estadística e Informática · UNA Puno</div>
 </footer>
 
 <script src="js/app.js"></script>
