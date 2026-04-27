@@ -69,9 +69,9 @@ const trabajos = [
 
     descripcion: "Flujo automatizado de ingestión, limpieza, análisis y visualización de eventos de mastitis bovina a partir de registros históricos del Establo Sausalito (2022–2025). Incluye estandarización de fechas, clasificación de tipos (PI, AD, PD), cálculo de DIM, conteo de recidivas y un dashboard interactivo en R Shiny con 5 módulos: Resumen General, Análisis Mastitis, Tendencias, Perfil por Vaca y Tabla Completa — con filtros reactivos y exportación CSV.",
 
-    pdf:    "trabajos/unidad1/VacasMastitis/analisis.pdf",
-    codigo: "trabajos/unidad1/VacasMastitis/codigo.R",
-    excel:  "trabajos/unidad1/VacasMastitis/datos.xlsx",
+    pdf:    "trabajos/unidad1/VacasMastitis/pipelineVacas.pdf",
+    codigo: "trabajos/unidad1/VacasMastitis/app.R",
+    excel:  "trabajos/unidad1/VacasMastitis/vacas_mastitis.xlsx",
     appUrl: "https://denilzonrobtt.shinyapps.io/mastitisVACAS/",
 
     fecha: "Abril 2026"
