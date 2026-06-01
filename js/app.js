@@ -69,12 +69,53 @@ const trabajos = [
 
     descripcion: "Flujo automatizado de ingestión, limpieza, análisis y visualización de eventos de mastitis bovina a partir de registros históricos del Establo Sausalito (2022–2025). Incluye estandarización de fechas, clasificación de tipos (PI, AD, PD), cálculo de DIM, conteo de recidivas y un dashboard interactivo en R Shiny con 5 módulos: Resumen General, Análisis Mastitis, Tendencias, Perfil por Vaca y Tabla Completa — con filtros reactivos y exportación CSV.",
 
-    pdf:    "trabajos/unidad1/VacasMastitis/pipelineVacas.pdf",
-    codigo: "trabajos/unidad1/VacasMastitis/app.R",
-    excel:  "trabajos/unidad1/VacasMastitis/vacas_mastitis.xlsx",
+    pdf:    "trabajos/unidad1/VacasMastitis/analisis.pdf",
+    codigo: "trabajos/unidad1/VacasMastitis/codigo.R",
+    excel:  "trabajos/unidad1/VacasMastitis/datos.xlsx",
     appUrl: "https://denilzonrobtt.shinyapps.io/mastitisVACAS/",
 
     fecha: "Abril 2026"
+  }
+
+  ,{
+    id:          "conceptos-vectorial-raster",
+    nombre:      "Estadística Espacial: Capas Vectorial y Raster",
+    unidad:      "u1",
+    icono:       "🗺️",
+
+    fuente:      "Trabajo Conceptual",
+    periodo:     "2026",
+    variable:    "Modelos Geoespaciales",
+    ambito:      "Fundamentos Teóricos",
+
+    pills: ["Vectorial", "Raster", "SIG", "Geoestadística"],
+
+    descripcion: "Exposición de los conceptos fundamentales de la estadística espacial, centrada en los dos modelos principales de representación geoespacial: el modelo vectorial y el modelo raster. Se describen sus estructuras, propiedades estadísticas, principales operaciones y criterios de selección según el tipo de análisis requerido, con énfasis en el procesamiento de datos raster.",
+
+    pdf:    "trabajos/unidad1/ConceptosEspacial/ConceptosEstadisticaEspacial.pdf",
+
+    fecha: "2026"
+  }
+
+  ,{
+    id:          "articulo-bayesiano-multietapa",
+    nombre:      "Artículo: A Multi-Stage Bayesian Approach to Fit Spatial Point Process Models",
+    unidad:      "u1",
+    icono:       "📐",
+
+    fuente:      "Artículo Científico",
+    periodo:     "2026",
+    variable:    "Proceso Puntual Espacial",
+    ambito:      "Estadística Bayesiana Espacial",
+
+    pills: ["Bayesiano", "Point Process", "Multi-Stage", "MCMC"],
+
+    descripcion: "Exposición detallada del artículo científico 'A Multi-Stage Bayesian Approach to Fit Spatial Point Process Models', explicando sus métodos, procesos y autores mediante diapositivas. Se presenta el enfoque bayesiano multietapa para ajustar modelos de procesos puntuales espaciales, incluyendo el método de inferencia y las aplicaciones prácticas del modelo.",
+
+    pdf:      "trabajos/unidad1/ArticuloBayesiano/Articulo Denilzon Multietapa.pdf",
+    videoUrl: "https://www.loom.com/share/ed979cc791374cc8a96c8c7fae78fa3c",
+
+    fecha: "2026"
   }
 
   /* ── Plantilla para el siguiente trabajo ──────────────────
@@ -90,9 +131,10 @@ const trabajos = [
     pills:       ["Método 1", "Método 2"],
     descripcion: "Descripción del análisis realizado.",
     pdf:         "trabajos/unidad1/nombre-carpeta/analisis.pdf",
-    codigo:      "trabajos/unidad1/nombre-carpeta/codigo.R",
-    excel:       "trabajos/unidad1/nombre-carpeta/datos.xlsx",  // opcional
-    appUrl:      "",                                            // opcional
+    codigo:      "trabajos/unidad1/nombre-carpeta/codigo.R",  // opcional
+    excel:       "trabajos/unidad1/nombre-carpeta/datos.xlsx", // opcional
+    appUrl:      "",   // opcional — App Shiny u otra web
+    videoUrl:    "",   // opcional — Loom, YouTube, etc.
     fecha:       "2026"
   }
   ──────────────────────────────────────────────────────────── */
@@ -128,8 +170,123 @@ function contarAnimar(el, fin) {
 
 /* ═══════════ CREAR BANNER SVG según unidad/tema ═══════════ */
 function crearBannerSVG(t) {
-  const isU2      = t.unidad === "u2";
+  const isU2       = t.unidad === "u2";
   const isPecuario = t.id && t.id.includes("mastitis");
+  const isRaster   = t.id && t.id.includes("vectorial-raster");
+  const isBayes    = t.id && t.id.includes("bayesiano");
+
+  /* ── Banner vectorial / raster ── */
+  if (isRaster) {
+    return `
+    <svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg"
+         style="position:absolute;inset:0;width:100%;height:100%;opacity:0.75">
+      <defs>
+        <radialGradient id="grd-${t.id}" cx="30%" cy="50%" r="55%">
+          <stop offset="0%" stop-color="#fbbf24" stop-opacity="0.12"/>
+          <stop offset="100%" stop-color="#fbbf24" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="grd2-${t.id}" cx="72%" cy="50%" r="45%">
+          <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.1"/>
+          <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect width="300" height="120" fill="url(#grd-${t.id})"/>
+      <rect width="300" height="120" fill="url(#grd2-${t.id})"/>
+
+      <!-- LADO IZQUIERDO: Vectorial (polígonos + puntos + líneas) -->
+      <text x="75" y="20" text-anchor="middle" font-size="7" fill="#fbbf24" opacity="0.7" font-family="monospace" font-weight="bold">VECTORIAL</text>
+      <!-- Polígono -->
+      <polygon points="30,35 70,28 90,55 65,75 25,68" fill="rgba(251,191,36,0.1)" stroke="#fbbf24" stroke-width="1.2" opacity="0.75"/>
+      <!-- Línea -->
+      <line x1="20" y1="90" x2="100" y2="85" stroke="#fbbf24" stroke-width="1.5" opacity="0.6"/>
+      <!-- Puntos -->
+      <circle cx="45" cy="50" r="3.5" fill="#fbbf24" opacity="0.85"/>
+      <circle cx="75" cy="42" r="3"   fill="#fbbf24" opacity="0.75"/>
+      <circle cx="60" cy="68" r="2.5" fill="#fbbf24" opacity="0.65"/>
+      <circle cx="88" cy="90" r="2.5" fill="#fbbf24" opacity="0.6"/>
+
+      <!-- Divisor central -->
+      <line x1="150" y1="15" x2="150" y2="105" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="150" y="65" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.15)" font-family="monospace">vs</text>
+
+      <!-- LADO DERECHO: Raster (cuadrícula de celdas con valores) -->
+      <text x="225" y="20" text-anchor="middle" font-size="7" fill="#38bdf8" opacity="0.7" font-family="monospace" font-weight="bold">RASTER</text>
+      <!-- Celdas de la grilla con distintas intensidades -->
+      <rect x="162" y="27" width="20" height="20" rx="1" fill="rgba(56,189,248,0.08)"  stroke="rgba(56,189,248,0.3)" stroke-width="0.5"/>
+      <rect x="182" y="27" width="20" height="20" rx="1" fill="rgba(56,189,248,0.18)"  stroke="rgba(56,189,248,0.3)" stroke-width="0.5"/>
+      <rect x="202" y="27" width="20" height="20" rx="1" fill="rgba(56,189,248,0.32)"  stroke="rgba(56,189,248,0.3)" stroke-width="0.5"/>
+      <rect x="222" y="27" width="20" height="20" rx="1" fill="rgba(56,189,248,0.55)"  stroke="rgba(56,189,248,0.3)" stroke-width="0.5"/>
+      <rect x="242" y="27" width="20" height="20" rx="1" fill="rgba(56,189,248,0.72)"  stroke="rgba(56,189,248,0.3)" stroke-width="0.5"/>
+      <rect x="162" y="47" width="20" height="20" rx="1" fill="rgba(56,189,248,0.22)"  stroke="rgba(56,189,248,0.3)" stroke-width="0.5"/>
+      <rect x="182" y="47" width="20" height="20" rx="1" fill="rgba(56,189,248,0.45)"  stroke="rgba(56,189,248,0.3)" stroke-width="0.5"/>
+      <rect x="202" y="47" width="20" height="20" rx="1" fill="rgba(56,189,248,0.65)"  stroke="rgba(56,189,248,0.3)" stroke-width="0.5"/>
+      <rect x="222" y="47" width="20" height="20" rx="1" fill="rgba(56,189,248,0.80)"  stroke="rgba(56,189,248,0.3)" stroke-width="0.5"/>
+      <rect x="242" y="47" width="20" height="20" rx="1" fill="rgba(56,189,248,0.90)"  stroke="rgba(56,189,248,0.3)" stroke-width="0.5"/>
+      <rect x="162" y="67" width="20" height="20" rx="1" fill="rgba(56,189,248,0.12)"  stroke="rgba(56,189,248,0.3)" stroke-width="0.5"/>
+      <rect x="182" y="67" width="20" height="20" rx="1" fill="rgba(56,189,248,0.28)"  stroke="rgba(56,189,248,0.3)" stroke-width="0.5"/>
+      <rect x="202" y="67" width="20" height="20" rx="1" fill="rgba(56,189,248,0.50)"  stroke="rgba(56,189,248,0.3)" stroke-width="0.5"/>
+      <rect x="222" y="67" width="20" height="20" rx="1" fill="rgba(56,189,248,0.35)"  stroke="rgba(56,189,248,0.3)" stroke-width="0.5"/>
+      <rect x="242" y="67" width="20" height="20" rx="1" fill="rgba(56,189,248,0.60)"  stroke="rgba(56,189,248,0.3)" stroke-width="0.5"/>
+      <rect x="162" y="87" width="20" height="18" rx="1" fill="rgba(56,189,248,0.06)"  stroke="rgba(56,189,248,0.3)" stroke-width="0.5"/>
+      <rect x="182" y="87" width="20" height="18" rx="1" fill="rgba(56,189,248,0.15)"  stroke="rgba(56,189,248,0.3)" stroke-width="0.5"/>
+      <rect x="202" y="87" width="20" height="18" rx="1" fill="rgba(56,189,248,0.38)"  stroke="rgba(56,189,248,0.3)" stroke-width="0.5"/>
+      <rect x="222" y="87" width="20" height="18" rx="1" fill="rgba(56,189,248,0.22)"  stroke="rgba(56,189,248,0.3)" stroke-width="0.5"/>
+      <rect x="242" y="87" width="20" height="18" rx="1" fill="rgba(56,189,248,0.48)"  stroke="rgba(56,189,248,0.3)" stroke-width="0.5"/>
+    </svg>`;
+  }
+
+  /* ── Banner artículo bayesiano ── */
+  if (isBayes) {
+    return `
+    <svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg"
+         style="position:absolute;inset:0;width:100%;height:100%;opacity:0.75">
+      <defs>
+        <radialGradient id="grd-${t.id}" cx="50%" cy="50%" r="55%">
+          <stop offset="0%" stop-color="#a78bfa" stop-opacity="0.13"/>
+          <stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/>
+        </radialGradient>
+        <pattern id="grid-${t.id}" width="16" height="16" patternUnits="userSpaceOnUse">
+          <path d="M16 0H0V16" fill="none" stroke="#a78bfa" stroke-width="0.3" opacity="0.18"/>
+        </pattern>
+      </defs>
+      <rect width="300" height="120" fill="url(#grd-${t.id})"/>
+      <rect width="300" height="120" fill="url(#grid-${t.id})"/>
+
+      <!-- Curva distribución posterior (campana bayesiana) -->
+      <path d="M 20,95 Q 50,95 70,70 Q 90,45 110,28 Q 130,12 150,10 Q 170,12 190,28 Q 210,45 230,70 Q 250,95 280,95"
+            fill="rgba(167,139,250,0.12)" stroke="#a78bfa" stroke-width="1.5" opacity="0.8"/>
+      <!-- Prior más ancha -->
+      <path d="M 20,95 Q 60,95 90,65 Q 120,35 150,28 Q 180,35 210,65 Q 240,95 280,95"
+            fill="none" stroke="rgba(167,139,250,0.35)" stroke-width="1" opacity="0.6" stroke-dasharray="5,3"/>
+      <!-- Likelihood -->
+      <path d="M 80,95 Q 105,95 120,55 Q 135,22 150,15 Q 165,22 180,55 Q 195,95 220,95"
+            fill="none" stroke="rgba(244,114,182,0.45)" stroke-width="1" opacity="0.7" stroke-dasharray="3,2"/>
+
+      <!-- Eje X -->
+      <line x1="15" y1="95" x2="285" y2="95" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+      <!-- Línea de moda posterior -->
+      <line x1="150" y1="10" x2="150" y2="95" stroke="rgba(167,139,250,0.4)" stroke-width="1" stroke-dasharray="3,2"/>
+
+      <!-- Etiquetas -->
+      <text x="40"  y="108" text-anchor="middle" font-size="6" fill="rgba(167,139,250,0.6)" font-family="monospace">Prior</text>
+      <text x="150" y="108" text-anchor="middle" font-size="6" fill="rgba(167,139,250,0.9)" font-family="monospace" font-weight="bold">Posterior</text>
+      <text x="260" y="108" text-anchor="middle" font-size="6" fill="rgba(244,114,182,0.6)" font-family="monospace">Likelihood</text>
+
+      <!-- Puntos de proceso puntual espacial (arriba izquierda) -->
+      <circle cx="22"  cy="22" r="2.5" fill="#a78bfa" opacity="0.6"/>
+      <circle cx="35"  cy="30" r="2"   fill="#a78bfa" opacity="0.5"/>
+      <circle cx="28"  cy="40" r="2.5" fill="#f472b6" opacity="0.55"/>
+      <circle cx="44"  cy="18" r="2"   fill="#a78bfa" opacity="0.45"/>
+      <circle cx="52"  cy="35" r="2"   fill="#a78bfa" opacity="0.5"/>
+      <circle cx="38"  cy="50" r="1.5" fill="#f472b6" opacity="0.45"/>
+
+      <!-- Badge ecuación -->
+      <rect x="220" y="14" width="68" height="22" rx="4"
+            fill="rgba(167,139,250,0.1)" stroke="rgba(167,139,250,0.3)" stroke-width="0.8"/>
+      <text x="254" y="22" text-anchor="middle" font-size="5.5" fill="#a78bfa" opacity="0.85" font-family="monospace">π(θ|y) ∝</text>
+      <text x="254" y="31" text-anchor="middle" font-size="5.5" fill="#a78bfa" opacity="0.85" font-family="monospace">L(y|θ)·π(θ)</text>
+    </svg>`;
+  }
 
   /* ── Banner ganadero / pipeline ── */
   if (isPecuario) {
@@ -147,54 +304,31 @@ function crearBannerSVG(t) {
       </defs>
       <rect width="300" height="120" fill="url(#grd-${t.id})"/>
       <rect width="300" height="120" fill="url(#grid-${t.id})"/>
-
-      <!-- Etapas del pipeline ETL como nodos conectados -->
-      <!-- Nodo 1: CSV -->
-      <rect x="18" y="46" width="38" height="28" rx="5"
-            fill="rgba(52,211,153,0.12)" stroke="#34d399" stroke-width="1" opacity="0.7"/>
+      <rect x="18" y="46" width="38" height="28" rx="5" fill="rgba(52,211,153,0.12)" stroke="#34d399" stroke-width="1" opacity="0.7"/>
       <text x="37" y="57" text-anchor="middle" font-size="6" fill="#34d399" opacity="0.9" font-family="monospace">CSV</text>
       <text x="37" y="67" text-anchor="middle" font-size="5" fill="#34d399" opacity="0.6" font-family="monospace">Extracción</text>
-
-      <!-- Flecha 1→2 -->
       <line x1="56" y1="60" x2="72" y2="60" stroke="#34d399" stroke-width="1" opacity="0.5" stroke-dasharray="3,2"/>
       <polygon points="72,57 78,60 72,63" fill="#34d399" opacity="0.5"/>
-
-      <!-- Nodo 2: Clean -->
-      <rect x="78" y="46" width="38" height="28" rx="5"
-            fill="rgba(52,211,153,0.12)" stroke="#34d399" stroke-width="1" opacity="0.7"/>
+      <rect x="78" y="46" width="38" height="28" rx="5" fill="rgba(52,211,153,0.12)" stroke="#34d399" stroke-width="1" opacity="0.7"/>
       <text x="97" y="57" text-anchor="middle" font-size="6" fill="#34d399" opacity="0.9" font-family="monospace">ETL</text>
       <text x="97" y="67" text-anchor="middle" font-size="5" fill="#34d399" opacity="0.6" font-family="monospace">Limpieza</text>
-
-      <!-- Flecha 2→3 -->
       <line x1="116" y1="60" x2="132" y2="60" stroke="#34d399" stroke-width="1" opacity="0.5" stroke-dasharray="3,2"/>
       <polygon points="132,57 138,60 132,63" fill="#34d399" opacity="0.5"/>
-
-      <!-- Nodo 3: Análisis -->
-      <rect x="138" y="46" width="38" height="28" rx="5"
-            fill="rgba(56,189,248,0.12)" stroke="#38bdf8" stroke-width="1" opacity="0.7"/>
+      <rect x="138" y="46" width="38" height="28" rx="5" fill="rgba(56,189,248,0.12)" stroke="#38bdf8" stroke-width="1" opacity="0.7"/>
       <text x="157" y="57" text-anchor="middle" font-size="6" fill="#38bdf8" opacity="0.9" font-family="monospace">Stats</text>
       <text x="157" y="67" text-anchor="middle" font-size="5" fill="#38bdf8" opacity="0.6" font-family="monospace">Análisis</text>
-
-      <!-- Flecha 3→4 -->
       <line x1="176" y1="60" x2="192" y2="60" stroke="#38bdf8" stroke-width="1" opacity="0.5" stroke-dasharray="3,2"/>
       <polygon points="192,57 198,60 192,63" fill="#38bdf8" opacity="0.5"/>
-
-      <!-- Nodo 4: Shiny (destacado) -->
-      <rect x="198" y="40" width="48" height="40" rx="6"
-            fill="rgba(167,139,250,0.15)" stroke="#a78bfa" stroke-width="1.5" opacity="0.9"/>
+      <rect x="198" y="40" width="48" height="40" rx="6" fill="rgba(167,139,250,0.15)" stroke="#a78bfa" stroke-width="1.5" opacity="0.9"/>
       <text x="222" y="56" text-anchor="middle" font-size="6.5" fill="#a78bfa" opacity="1" font-family="monospace" font-weight="bold">Shiny</text>
       <text x="222" y="67" text-anchor="middle" font-size="5" fill="#a78bfa" opacity="0.75" font-family="monospace">Dashboard</text>
       <text x="222" y="76" text-anchor="middle" font-size="4.5" fill="#a78bfa" opacity="0.6" font-family="monospace">5 módulos</text>
-
-      <!-- Indicadores de recidivas (barra lateral) -->
       <rect x="260" y="30" width="6" height="60" rx="3" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
       <rect x="260" y="68" width="6" height="22" rx="3" fill="#f472b6" opacity="0.55"/>
       <rect x="269" y="30" width="6" height="60" rx="3" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
       <rect x="269" y="50" width="6" height="40" rx="3" fill="#34d399" opacity="0.55"/>
       <rect x="278" y="30" width="6" height="60" rx="3" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
       <rect x="278" y="42" width="6" height="48" rx="3" fill="#38bdf8" opacity="0.55"/>
-
-      <!-- Labels top -->
       <text x="37"  y="38" text-anchor="middle" font-size="4.5" fill="rgba(255,255,255,0.3)" font-family="monospace">01</text>
       <text x="97"  y="38" text-anchor="middle" font-size="4.5" fill="rgba(255,255,255,0.3)" font-family="monospace">02</text>
       <text x="157" y="38" text-anchor="middle" font-size="4.5" fill="rgba(255,255,255,0.3)" font-family="monospace">03</text>
@@ -322,6 +456,7 @@ function crearTarjeta(t, delay) {
         </div>
       </div>
 
+      ${t.codigo ? `
       <div>
         <div class="ac-label">Código Fuente (.R)</div>
         <div class="ac-row">
@@ -332,7 +467,7 @@ function crearTarjeta(t, delay) {
             ⬇ Descargar .R
           </a>
         </div>
-      </div>
+      </div>` : ""}
 
       ${t.excel ? `
       <div>
@@ -340,6 +475,16 @@ function crearTarjeta(t, delay) {
         <div class="ac-row">
           <a href="${t.excel}" download class="btn-ac btn-ac-dl">
             📊 Descargar Excel
+          </a>
+        </div>
+      </div>` : ""}
+
+      ${t.videoUrl ? `
+      <div>
+        <div class="ac-label">Exposición en Video</div>
+        <div class="ac-row">
+          <a href="${t.videoUrl}" target="_blank" rel="noopener noreferrer" class="btn-ac btn-ac-video">
+            🎬 Ver Video (Loom)
           </a>
         </div>
       </div>` : ""}

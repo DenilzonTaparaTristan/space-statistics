@@ -735,6 +735,21 @@ body {
   box-shadow:0 4px 20px rgba(167,139,250,.2);
 }
 
+/* Botón Video Loom — rosa/coral */
+.btn-ac-video {
+  border-color:rgba(244,114,182,.28);
+  color:var(--rose);
+  background:rgba(244,114,182,.07);
+  font-weight:600;
+}
+.btn-ac-video:hover {
+  border-color:rgba(244,114,182,.52);
+  color:var(--rose);
+  background:rgba(244,114,182,.14);
+  transform:translateY(-1px);
+  box-shadow:0 4px 20px rgba(244,114,182,.18);
+}
+
 .tc-fecha { font-size:.68rem; color:var(--t3); font-family:var(--f-mono); margin-top:4px; }
 
 /* Nota de archivos */
