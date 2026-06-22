@@ -118,6 +118,48 @@ const trabajos = [
     fecha: "2026"
   }
 
+  ,{
+    id:          "app-autocorrelacion-shiny",
+    nombre:      "App Shiny: Análisis Interactivo de Autocorrelación Espacial",
+    unidad:      "u1",
+    icono:       "📡",
+
+    fuente:      "Aplicación R Shiny",
+    periodo:     "2026",
+    variable:    "Moran's I · LISA",
+    ambito:      "Múltiples Datasets",
+
+    pills: ["Moran Global", "LISA", "Monte Carlo", "Leaflet"],
+
+    descripcion: "Aplicación interactiva en R Shiny que calcula el Índice de Moran Global (I), identifica clústeres locales mediante LISA y permite analizar múltiples datasets espaciales (Carolina del Norte, Estados de EE.UU., Boston Housing y datos mundiales). La hipótesis nula plantea que los valores se distribuyen aleatoriamente en el espacio, evaluada mediante Z-score y complementada con simulación Monte Carlo de permutaciones aleatorias. Genera reportes automáticos en HTML, PDF y Word, y visualiza mapas interactivos con Leaflet.",
+
+    pdf:    "trabajos/unidad1/AppAutocorrelacion/app_autocorrelacion.pdf",
+    codigo: "trabajos/unidad1/AppAutocorrelacion/app.R",
+    appUrl: "https://denilzonrobtt.shinyapps.io/autocorrelacion_app/",
+
+    fecha: "2026"
+  }
+
+  ,{
+    id:          "ivea-vulnerabilidad-alpacas",
+    nombre:      "Compound Spatial Vulnerability Index for Alpaca Populations Facing Frost Risk in the Puno Altiplano, Peru (2019)",
+    unidad:      "u1",
+    icono:       "🦙",
+
+    fuente:      "WorldClim v2.1 · SRTM · MIDAGRI 2019",
+    periodo:     "2019",
+    variable:    "IVEA — Índice Compuesto",
+    ambito:      "109 distritos — Altiplano de Puno",
+
+    pills: ["Kriging", "GWR", "Moran's I", "LISA", "Fisher-Jenks"],
+
+    descripcion: "Artículo de investigación que presenta el Índice de Vulnerabilidad Espacial de Alpacas (IVEA), un índice compuesto que pondera temperatura mínima (35%), elevación (25%), densidad de alpacas (20%), precipitación anual (15%) y cobertura óptima del piso altitudinal (5%), aplicado a los 109 distritos del Altiplano de Puno —hogar de 2 035 280 alpacas, la mayor población del Perú—. Los valores se clasificaron con el algoritmo Fisher-Jenks; la estructura espacial se caracterizó con Moran's I y LISA; la temperatura mínima se interpoló mediante Kriging Ordinario con validación cruzada LOOCV; y la relación clima-densidad se modeló con Regresión Geográficamente Ponderada (GWR). Los resultados muestran que 48 distritos (43.6%) presentan vulnerabilidad Muy Alta, concentrados en las provincias de El Collao, Lampa, Melgar, San Antonio de Putina y Puno. Moran's I = 0.579 (p < 10⁻²²) confirmó un fuerte agrupamiento espacial positivo, mientras que el modelo GWR superó ampliamente a la regresión OLS global (R² = 0.646 vs. 0.164), revelando una marcada no estacionariedad espacial en la relación entre heladas y densidad de alpacas.",
+
+    pdf: "trabajos/unidad1/PaperIVEA/PAPER_V1_FINAL.pdf",
+
+    fecha: "2026"
+  }
+
   /* ── Plantilla para el siguiente trabajo ──────────────────
   ,{
     id:          "id-unico-sin-espacios",
@@ -170,10 +212,12 @@ function contarAnimar(el, fin) {
 
 /* ═══════════ CREAR BANNER SVG según unidad/tema ═══════════ */
 function crearBannerSVG(t) {
-  const isU2       = t.unidad === "u2";
-  const isPecuario = t.id && t.id.includes("mastitis");
-  const isRaster   = t.id && t.id.includes("vectorial-raster");
-  const isBayes    = t.id && t.id.includes("bayesiano");
+  const isU2        = t.unidad === "u2";
+  const isPecuario  = t.id && t.id.includes("mastitis");
+  const isRaster    = t.id && t.id.includes("vectorial-raster");
+  const isBayes     = t.id && t.id.includes("bayesiano");
+  const isAutocorr  = t.id && t.id.includes("app-autocorrelacion");
+  const isAlpaca    = t.id && t.id.includes("ivea-vulnerabilidad");
 
   /* ── Banner vectorial / raster ── */
   if (isRaster) {
@@ -285,6 +329,92 @@ function crearBannerSVG(t) {
             fill="rgba(167,139,250,0.1)" stroke="rgba(167,139,250,0.3)" stroke-width="0.8"/>
       <text x="254" y="22" text-anchor="middle" font-size="5.5" fill="#a78bfa" opacity="0.85" font-family="monospace">π(θ|y) ∝</text>
       <text x="254" y="31" text-anchor="middle" font-size="5.5" fill="#a78bfa" opacity="0.85" font-family="monospace">L(y|θ)·π(θ)</text>
+    </svg>`;
+  }
+
+  /* ── Banner App Autocorrelación (mapa choropleth + Z-score) ── */
+  if (isAutocorr) {
+    return `
+    <svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg"
+         style="position:absolute;inset:0;width:100%;height:100%;opacity:0.78">
+      <defs>
+        <radialGradient id="grd-${t.id}" cx="50%" cy="50%" r="55%">
+          <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.12"/>
+          <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect width="300" height="120" fill="url(#grd-${t.id})"/>
+
+      <!-- Mapa choropleth hexagonal (polígonos vecinos coloreados) -->
+      <polygon points="40,30 60,22 80,30 80,50 60,58 40,50" fill="rgba(215,25,28,0.55)" stroke="rgba(255,255,255,0.15)" stroke-width="0.6"/>
+      <polygon points="80,30 100,22 120,30 120,50 100,58 80,50" fill="rgba(215,25,28,0.4)" stroke="rgba(255,255,255,0.15)" stroke-width="0.6"/>
+      <polygon points="60,58 80,50 100,58 100,78 80,86 60,78" fill="rgba(215,25,28,0.35)" stroke="rgba(255,255,255,0.15)" stroke-width="0.6"/>
+      <polygon points="100,58 120,50 140,58 140,78 120,86 100,78" fill="rgba(44,123,182,0.3)" stroke="rgba(255,255,255,0.15)" stroke-width="0.6"/>
+      <polygon points="120,30 140,22 160,30 160,50 140,58 120,50" fill="rgba(204,204,204,0.25)" stroke="rgba(255,255,255,0.15)" stroke-width="0.6"/>
+      <polygon points="140,58 160,50 180,58 180,78 160,86 140,78" fill="rgba(44,123,182,0.45)" stroke="rgba(255,255,255,0.15)" stroke-width="0.6"/>
+      <polygon points="160,30 180,22 200,30 200,50 180,58 160,50" fill="rgba(44,123,182,0.55)" stroke="rgba(255,255,255,0.15)" stroke-width="0.6"/>
+      <polygon points="180,58 200,50 220,58 220,78 200,86 180,78" fill="rgba(44,123,182,0.6)" stroke="rgba(255,255,255,0.15)" stroke-width="0.6"/>
+
+      <!-- Panel Z-score / fórmula -->
+      <rect x="232" y="22" width="56" height="56" rx="6" fill="rgba(56,189,248,0.1)" stroke="rgba(56,189,248,0.32)" stroke-width="0.8"/>
+      <text x="260" y="38" text-anchor="middle" font-size="6.5" fill="#38bdf8" opacity="0.9" font-family="monospace" font-weight="bold">Moran's I</text>
+      <text x="260" y="52" text-anchor="middle" font-size="6" fill="#38bdf8" opacity="0.8" font-family="monospace">Z = (I−E[I])</text>
+      <text x="260" y="61" text-anchor="middle" font-size="6" fill="#38bdf8" opacity="0.8" font-family="monospace">  /√Var[I]</text>
+      <text x="260" y="73" text-anchor="middle" font-size="5" fill="#34d399" opacity="0.85" font-family="monospace">p-MC &lt; 0.05</text>
+
+      <!-- Etiqueta Leaflet -->
+      <text x="20" y="100" font-size="5.5" fill="rgba(255,255,255,0.4)" font-family="monospace">📍 Leaflet · HTML/PDF/Word</text>
+    </svg>`;
+  }
+
+  /* ── Banner IVEA Alpacas (heladas + altiplano) ── */
+  if (isAlpaca) {
+    return `
+    <svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg"
+         style="position:absolute;inset:0;width:100%;height:100%;opacity:0.78">
+      <defs>
+        <linearGradient id="sky-${t.id}" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"  stop-color="#38bdf8" stop-opacity="0.16"/>
+          <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.02"/>
+        </linearGradient>
+      </defs>
+      <rect width="300" height="120" fill="url(#sky-${t.id})"/>
+
+      <!-- Silueta de montañas del altiplano -->
+      <polygon points="0,90 35,55 60,75 90,40 120,68 150,48 180,72 210,50 240,78 270,58 300,85 300,120 0,120"
+               fill="rgba(167,139,250,0.10)" stroke="rgba(167,139,250,0.3)" stroke-width="1"/>
+      <polygon points="0,100 40,72 75,88 110,62 145,84 180,66 215,90 250,70 300,95 300,120 0,120"
+               fill="rgba(56,189,248,0.12)" stroke="rgba(56,189,248,0.28)" stroke-width="1"/>
+
+      <!-- Copos de nieve / helada (puntos dispersos arriba) -->
+      <circle cx="40"  cy="18" r="1.5" fill="#a8c0d6" opacity="0.7"/>
+      <circle cx="70"  cy="12" r="1.2" fill="#a8c0d6" opacity="0.6"/>
+      <circle cx="110" cy="22" r="1.6" fill="#a8c0d6" opacity="0.65"/>
+      <circle cx="150" cy="10" r="1.3" fill="#a8c0d6" opacity="0.55"/>
+      <circle cx="190" cy="20" r="1.5" fill="#a8c0d6" opacity="0.6"/>
+      <circle cx="230" cy="14" r="1.2" fill="#a8c0d6" opacity="0.5"/>
+      <circle cx="265" cy="24" r="1.4" fill="#a8c0d6" opacity="0.6"/>
+
+      <!-- Distritos como puntos de severidad (heatmap simulando los 109 distritos) -->
+      <circle cx="55"  cy="92" r="4.5" fill="#dc2626" opacity="0.75"/>
+      <circle cx="78"  cy="80" r="3.5" fill="#dc2626" opacity="0.65"/>
+      <circle cx="100" cy="95" r="4"   fill="#f97316" opacity="0.65"/>
+      <circle cx="130" cy="78" r="3"   fill="#fbbf24" opacity="0.6"/>
+      <circle cx="155" cy="92" r="4.5" fill="#dc2626" opacity="0.7"/>
+      <circle cx="180" cy="82" r="3"   fill="#f97316" opacity="0.55"/>
+      <circle cx="205" cy="96" r="3.8" fill="#fbbf24" opacity="0.6"/>
+      <circle cx="230" cy="85" r="3.2" fill="#34d399" opacity="0.5"/>
+      <circle cx="252" cy="98" r="3"   fill="#34d399" opacity="0.5"/>
+
+      <!-- Badge IVEA -->
+      <rect x="14" y="14" width="64" height="24" rx="5" fill="rgba(167,139,250,0.14)" stroke="rgba(167,139,250,0.35)" stroke-width="0.8"/>
+      <text x="46" y="24" text-anchor="middle" font-size="6.5" fill="#a78bfa" opacity="0.95" font-family="monospace" font-weight="bold">IVEA</text>
+      <text x="46" y="33" text-anchor="middle" font-size="4.8" fill="#a78bfa" opacity="0.75" font-family="monospace">109 distritos</text>
+
+      <!-- Badge Moran's I -->
+      <rect x="220" y="14" width="68" height="24" rx="5" fill="rgba(220,38,38,0.12)" stroke="rgba(220,38,38,0.32)" stroke-width="0.8"/>
+      <text x="254" y="24" text-anchor="middle" font-size="6" fill="#f87171" opacity="0.95" font-family="monospace">I = 0.579</text>
+      <text x="254" y="33" text-anchor="middle" font-size="4.5" fill="#f87171" opacity="0.7" font-family="monospace">p &lt; 10⁻²²</text>
     </svg>`;
   }
 
