@@ -1,0 +1,8 @@
+PRACTICA AUTOCORRELACION MORAN - DENILZON
+
+
+Párrafo de interpretación agronómica
+Interpretación del Índice de Moran — Grilla 3×3 de quinua (Altiplano)
+
+El índice de Moran obtenido con contigüidad Torre es I = 0.49, y con contigüidad Reina es I = 0.29; ambos muy superiores al valor esperado bajo aleatoriedad espacial E[I] = −0.125. El signo positivo indica que las parcelas con rendimientos altos tienden a estar rodeadas de otras parcelas igualmente altas (esquina superior izquierda: 2.1, 2.0, 1.9), y las de rendimiento bajo se agrupan en la esquina inferior derecha (1.4, 1.3, 1.5). La prueba de permutaciones Monte Carlo confirma que este patrón es estadísticamente significativo y no producto del azar. La diferencia entre métodos se explica porque la Reina incorpora pares diagonales donde los rendimientos son menos similares, reduciendo levemente el índice sin cambiar la conclusión. Desde el punto de vista agronómico, este agrupamiento espacial evidencia la influencia de gradientes de suelo, humedad o pendiente que actúan de forma continua sobre la terraza. Al existir estructura espacial clara, tiene pleno sentido continuar con el modelado del variograma y el krigeado ordinario: la autocorrelación garantiza que la interpolación espacial será más precisa que una estimación global basada sólo en la media.
+
