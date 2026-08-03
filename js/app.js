@@ -262,8 +262,9 @@ const trabajos = [
 
     descripcion: "Paper grupal que replica y extiende el enfoque geoestadístico de Lourenço y Landim (2004) para la región de Puno, incorporando cuatro índices espectrales (NDVI, EVI, SAVI, NDMI) obtenidos de imágenes Sentinel-2, contrastando estación seca (mayo–agosto 2024) y húmeda (diciembre 2023–marzo 2024) con 500 puntos de muestreo aleatorio. Se ajustaron semivariogramas experimentales e interpolación mediante Krigeado Ordinario (grilla de 2 km, 16 850 nodos) y Krigeado Indicativo con dos niveles de corte. Los resultados revelan una marcada estacionalidad en la estructura de dependencia espacial: en estación seca los alcances son de escala regional (~108 km para NDVI) mientras que en estación húmeda se reducen a escala local (~16–17 km).",
 
-    pdf:    "trabajos/unidad2/IndicesVegetacion/Variabilidad_espacial_de_indices_de_vegetacion.pdf",
+    pdf:    "trabajos/unidad2/IndicesVegetacion/Variabilidad_espacial_de_índices_de_vegetación.pdf",
     codigo: "trabajos/unidad2/IndicesVegetacion/Rprovincia_puno.R",
+    data:  "trabajos/unidad2/IndicesVegetacion/documentacion_obtencion_datos.md",
 
     fecha: "2026"
   }
@@ -285,6 +286,9 @@ const trabajos = [
 
     pdf:    "trabajos/unidad2/BofedalesCarabaya/Carabaya_Wetland_Vegetation_RSASE_Manuscript.pdf",
     codigo: "trabajos/unidad2/BofedalesCarabaya/bof.R",
+    data1:  "trabajos/unidad2/BofedalesCarabaya/serie_temporal_clima_carabaya_2017_2025.csv",
+    data2:  "trabajos/unidad2/BofedalesCarabaya/serie_temporal_indices_carabaya_2017_2025.csv",
+    Mapeo: "trabajos/unidad2/BofedalesCarabaya/bof_2.qgz", 
 
     fecha: "2026"
   }
