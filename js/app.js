@@ -160,26 +160,135 @@ const trabajos = [
     fecha: "2026"
   }
 
-  /* ── Plantilla para el siguiente trabajo ──────────────────
   ,{
-    id:          "id-unico-sin-espacios",
-    nombre:      "Título completo del trabajo",
-    unidad:      "u1",       // "u1" o "u2"
-    icono:       "📊",
-    fuente:      "Fuente de datos",
-    periodo:     "Año",
-    variable:    "Nombre de variable",
-    ambito:      "Alcance geográfico",
-    pills:       ["Método 1", "Método 2"],
-    descripcion: "Descripción del análisis realizado.",
-    pdf:         "trabajos/unidad1/nombre-carpeta/analisis.pdf",
-    codigo:      "trabajos/unidad1/nombre-carpeta/codigo.R",  // opcional
-    excel:       "trabajos/unidad1/nombre-carpeta/datos.xlsx", // opcional
-    appUrl:      "",   // opcional — App Shiny u otra web
-    videoUrl:    "",   // opcional — Loom, YouTube, etc.
-    fecha:       "2026"
+    id:          "intro-raster-vectores-gis",
+    nombre:      "Rasters y Vectores en GIS: Estructuras de Representación Espacial",
+    unidad:      "u1",
+    icono:       "🗾",
+
+    fuente:      "Trabajo Teórico",
+    periodo:     "2026",
+    variable:    "Estructuras Raster / Vectorial",
+    ambito:      "Fundamentos GIS",
+
+    pills: ["Raster", "Vectorial", "GIS", "Teoría"],
+
+    descripcion: "Trabajo teórico sobre las dos estructuras fundamentales de representación de datos en Sistemas de Información Geográfica (GIS): el modelo raster, basado en celdas o píxeles con valores continuos, y el modelo vectorial, compuesto por puntos, líneas y polígonos. Se analizan sus características técnicas, ventajas comparativas, operaciones típicas y criterios de selección según el tipo de fenómeno geográfico a modelar.",
+
+    pdf:   "trabajos/unidad1/IntroRasterVectores/Introduccion_raster_vectores.pdf",
+
+    fecha: "2026"
   }
-  ──────────────────────────────────────────────────────────── */
+
+  ,{
+    id:          "ejercicios-gaussianos",
+    nombre:      "Variables Gaussianas: Resolución de Ejercicios",
+    unidad:      "u1",
+    icono:       "📈",
+
+    fuente:      "Ejercicios Teóricos",
+    periodo:     "2026",
+    variable:    "Distribución Normal / Gaussiana",
+    ambito:      "Estadística Espacial — Fundamentos",
+
+    pills: ["Gaussiana", "Normal", "Varianza", "Fundamentos"],
+
+    descripcion: "Resolución paso a paso de ejercicios sobre variables aleatorias gaussianas aplicadas al contexto de la estadística espacial. Se abordan propiedades de la distribución normal multivariada, cálculo de esperanza, varianza y covarianza, estandarización de variables, función de densidad y su rol como base teórica de métodos geoestadísticos como el Kriging y los modelos de regresión espacial.",
+
+    pdf:   "trabajos/unidad1/EjerciciosGausianos/Ejercicios_Gausianos.pdf",
+
+    fecha: "2026"
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     UNIDAD 2
+     ══════════════════════════════════════════════════════════ */
+
+  ,{
+    id:          "moran-torre-reyna-excel",
+    nombre:      "Índice de Moran: Métodos de Vecinos Torre y Reina",
+    unidad:      "u2",
+    icono:       "♟️",
+
+    fuente:      "Ejercicio Práctico",
+    periodo:     "2026",
+    variable:    "Índice de Moran Global",
+    ambito:      "Métodos de Contigüidad",
+
+    pills: ["Moran's I", "Torre (Rook)", "Reina (Queen)", "Excel · R"],
+
+    descripcion: "Resolución práctica del cálculo del Índice de Moran Global utilizando los dos métodos de definición de vecindad espacial por contigüidad: el método Torre (Rook), que considera únicamente vecinos que comparten un lado, y el método Reina (Queen), que incluye también los vecinos diagonales. El ejercicio replica el ejemplo del PDF asignado, implementado en Excel y en R con la librería spdep, comparando los resultados de ambas matrices de pesos espaciales W.",
+
+    pdf:    "trabajos/unidad2/MoranTorreReyna/PRACTICA_AUTOCORRELACION.txt",
+    excel:  "trabajos/unidad2/MoranTorreReyna/practiica_torre_reyna_moran.xlsx",
+    codigo: "trabajos/unidad2/MoranTorreReyna/Practica.R",
+
+    fecha: "2026"
+  }
+
+  ,{
+    id:          "facsimil-obesidad-peru",
+    nombre:      "Facsímil: Análisis Espacial de Obesidad en Adultos Peruanos — ENDES 2022",
+    unidad:      "u2",
+    icono:       "🗺️",
+
+    fuente:      "ENDES 2022 — INEI",
+    periodo:     "2022",
+    variable:    "Prevalencia de Obesidad",
+    ambito:      "Nacional — Perú (33 429 adultos)",
+
+    pills: ["LISA", "Getis-Ord Gi*", "Moran's I", "Trabajo Grupal"],
+
+    descripcion: "Trabajo grupal de replicación de paper: análisis espacial de la obesidad en la población adulta peruana a nivel de conglomerados y distritos con datos ENDES 2022 (n = 33 429). La prevalencia cruda de obesidad fue 28.9%. Se confirmó autocorrelación espacial global positiva significativa a nivel de conglomerados (Moran = 0.2198; z = 29.91; p < 0.001) y distrital (Moran = 0.2846; z = 10.11; p < 0.001). El análisis LISA y Getis-Ord Gi* identificó clústeres de alto riesgo (Alto-Alto) en la costa peruana — Lima Metropolitana, Tumbes, Piura, La Libertad y Lambayeque — y focos emergentes en la selva (Loreto y Madre de Dios), con corredores fríos (Bajo-Bajo) a lo largo de la cordillera andina.",
+
+    pdf:    "trabajos/unidad2/FacsimilObesidad/obesidad_en_adultos.pdf",
+    codigo: "trabajos/unidad2/FacsimilObesidad/Analisis-Obesidad.r",
+
+    fecha: "2026"
+  }
+
+  ,{
+    id:          "indices-vegetacion-kriging-puno",
+    nombre:      "Variabilidad Espacial de Índices de Vegetación mediante Krigeado — Puno",
+    unidad:      "u2",
+    icono:       "🌿",
+
+    fuente:      "Sentinel-2 SR Harmonized",
+    periodo:     "2023–2024",
+    variable:    "NDVI · EVI · SAVI · NDMI",
+    ambito:      "Región Puno — 500 puntos",
+
+    pills: ["Kriging Ordinario", "Variograma", "Sentinel-2", "Trabajo Grupal"],
+
+    descripcion: "Paper grupal que replica y extiende el enfoque geoestadístico de Lourenço y Landim (2004) para la región de Puno, incorporando cuatro índices espectrales (NDVI, EVI, SAVI, NDMI) obtenidos de imágenes Sentinel-2, contrastando estación seca (mayo–agosto 2024) y húmeda (diciembre 2023–marzo 2024) con 500 puntos de muestreo aleatorio. Se ajustaron semivariogramas experimentales e interpolación mediante Krigeado Ordinario (grilla de 2 km, 16 850 nodos) y Krigeado Indicativo con dos niveles de corte. Los resultados revelan una marcada estacionalidad en la estructura de dependencia espacial: en estación seca los alcances son de escala regional (~108 km para NDVI) mientras que en estación húmeda se reducen a escala local (~16–17 km).",
+
+    pdf:    "trabajos/unidad2/IndicesVegetacion/Variabilidad_espacial_de_indices_de_vegetacion.pdf",
+    codigo: "trabajos/unidad2/IndicesVegetacion/Rprovincia_puno.R",
+
+    fecha: "2026"
+  }
+
+  ,{
+    id:          "bofedales-carabaya-sarima-rsase",
+    nombre:      "Paper RSASE: Spatio-Temporal Dynamics of High-Andean Wetland Vegetation Vigor — Carabaya, Puno (2019–2025)",
+    unidad:      "u2",
+    icono:       "🏔️",
+
+    fuente:      "Sentinel-2 · ERA5 · INAIGEM 2023",
+    periodo:     "2019–2025",
+    variable:    "NDVI · SAVI · EVI · NDMI",
+    ambito:      "Carabaya, Puno — 300 puntos",
+
+    pills: ["SARIMA", "Kriging", "Moran's I", "Enviado RSASE"],
+
+    descripcion: "Paper personal enviado a la revista RSASE (Elsevier). Caracteriza la dinámica espacio-temporal de la vegetación en bofedales altoandinos de Carabaya, Puno (2019–2025) mediante dos componentes: el espacial evalúa semivariogramas, Kriging ordinario y autocorrelación (Moran's I global y Getis-Ord Gi* local) en 300 puntos de muestreo; el temporal ajusta modelos SARIMA a series mensuales de cuatro índices espectrales, comparados contra ETS y TBATS mediante validación cruzada rolling-origin (RMSE). El Kriging Esférico obtuvo RMSE-LOOCV = 0.679°C con R² = 0.496. Todos los modelos SARIMA produjeron residuos compatibles con ruido blanco (Ljung-Box p > 0.6) y las series del bofedal no presentaron tendencia significativa bajo ninguna prueba de Mann-Kendall, mientras que el control (SAVI de pajonal) mostró tendencia creciente significativa bajo el test estacional (τ = 0.214, p = 0.019).",
+
+    pdf:    "trabajos/unidad2/BofedalesCarabaya/Carabaya_Wetland_Vegetation_RSASE_Manuscript.pdf",
+    codigo: "trabajos/unidad2/BofedalesCarabaya/bof.R",
+
+    fecha: "2026"
+  }
+
 ];
 
 /* ═══════════ ESTADO ════════════════════════════════════════ */
@@ -216,8 +325,12 @@ function crearBannerSVG(t) {
   const isPecuario  = t.id && t.id.includes("mastitis");
   const isRaster    = t.id && t.id.includes("vectorial-raster");
   const isBayes     = t.id && t.id.includes("bayesiano");
-  const isAutocorr  = t.id && t.id.includes("app-autocorrelacion");
-  const isAlpaca    = t.id && t.id.includes("ivea-vulnerabilidad");
+  const isIntroRV   = t.id && t.id.includes("intro-raster-vectores");
+  const isGaussian  = t.id && t.id.includes("ejercicios-gaussianos");
+  const isMoranW    = t.id && t.id.includes("moran-torre-reyna");
+  const isObesidad  = t.id && t.id.includes("facsimil-obesidad");
+  const isKrigVeg   = t.id && t.id.includes("indices-vegetacion");
+  const isBofedal   = t.id && t.id.includes("bofedales-carabaya");
 
   /* ── Banner vectorial / raster ── */
   if (isRaster) {
@@ -332,7 +445,325 @@ function crearBannerSVG(t) {
     </svg>`;
   }
 
-  /* ── Banner App Autocorrelación (mapa choropleth + Z-score) ── */
+  const isAutocorr  = t.id && t.id.includes("app-autocorrelacion");
+  const isAlpaca    = t.id && t.id.includes("ivea-vulnerabilidad");
+
+  /* ── Banner Introducción Raster / Vectores ── */
+  if (isIntroRV) {
+    return `
+    <svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg"
+         style="position:absolute;inset:0;width:100%;height:100%;opacity:0.78">
+      <defs>
+        <radialGradient id="grd-${t.id}" cx="28%" cy="50%" r="45%">
+          <stop offset="0%" stop-color="#fbbf24" stop-opacity="0.13"/>
+          <stop offset="100%" stop-color="#fbbf24" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="grd2-${t.id}" cx="75%" cy="50%" r="40%">
+          <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.11"/>
+          <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect width="300" height="120" fill="url(#grd-${t.id})"/>
+      <rect width="300" height="120" fill="url(#grd2-${t.id})"/>
+
+      <!-- VECTORIAL (izquierda) -->
+      <text x="70" y="18" text-anchor="middle" font-size="7" fill="#fbbf24" opacity="0.75" font-family="monospace" font-weight="bold">VECTORIAL</text>
+      <polygon points="22,35 58,26 88,42 78,72 42,78 18,60" fill="rgba(251,191,36,0.12)" stroke="#fbbf24" stroke-width="1.3" opacity="0.8"/>
+      <line x1="16" y1="88" x2="95" y2="82" stroke="#fbbf24" stroke-width="1.8" opacity="0.65" stroke-linecap="round"/>
+      <line x1="32" y1="95" x2="88" y2="98" stroke="#fbbf24" stroke-width="1.2" opacity="0.4" stroke-linecap="round"/>
+      <circle cx="30" cy="45" r="3.5" fill="#fbbf24" opacity="0.9"/>
+      <circle cx="65" cy="30" r="3"   fill="#fbbf24" opacity="0.8"/>
+      <circle cx="82" cy="58" r="3"   fill="#fbbf24" opacity="0.75"/>
+      <circle cx="46" cy="72" r="2.5" fill="#fbbf24" opacity="0.65"/>
+
+      <!-- Separador -->
+      <line x1="140" y1="14" x2="140" y2="106" stroke="rgba(255,255,255,0.09)" stroke-width="1" stroke-dasharray="5,4"/>
+      <text x="140" y="64" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.12)" font-family="sans-serif">vs</text>
+
+      <!-- RASTER (derecha) — grilla con gradiente de valores -->
+      <text x="225" y="18" text-anchor="middle" font-size="7" fill="#38bdf8" opacity="0.75" font-family="monospace" font-weight="bold">RASTER</text>
+      <!-- Fila 1 -->
+      <rect x="155" y="25" width="18" height="18" rx="1" fill="rgba(56,189,248,0.07)"  stroke="rgba(56,189,248,0.28)" stroke-width="0.5"/>
+      <rect x="173" y="25" width="18" height="18" rx="1" fill="rgba(56,189,248,0.18)"  stroke="rgba(56,189,248,0.28)" stroke-width="0.5"/>
+      <rect x="191" y="25" width="18" height="18" rx="1" fill="rgba(56,189,248,0.34)"  stroke="rgba(56,189,248,0.28)" stroke-width="0.5"/>
+      <rect x="209" y="25" width="18" height="18" rx="1" fill="rgba(56,189,248,0.52)"  stroke="rgba(56,189,248,0.28)" stroke-width="0.5"/>
+      <rect x="227" y="25" width="18" height="18" rx="1" fill="rgba(56,189,248,0.68)"  stroke="rgba(56,189,248,0.28)" stroke-width="0.5"/>
+      <rect x="245" y="25" width="18" height="18" rx="1" fill="rgba(56,189,248,0.82)"  stroke="rgba(56,189,248,0.28)" stroke-width="0.5"/>
+      <!-- Fila 2 -->
+      <rect x="155" y="43" width="18" height="18" rx="1" fill="rgba(56,189,248,0.14)"  stroke="rgba(56,189,248,0.28)" stroke-width="0.5"/>
+      <rect x="173" y="43" width="18" height="18" rx="1" fill="rgba(56,189,248,0.28)"  stroke="rgba(56,189,248,0.28)" stroke-width="0.5"/>
+      <rect x="191" y="43" width="18" height="18" rx="1" fill="rgba(56,189,248,0.50)"  stroke="rgba(56,189,248,0.28)" stroke-width="0.5"/>
+      <rect x="209" y="43" width="18" height="18" rx="1" fill="rgba(56,189,248,0.70)"  stroke="rgba(56,189,248,0.28)" stroke-width="0.5"/>
+      <rect x="227" y="43" width="18" height="18" rx="1" fill="rgba(56,189,248,0.85)"  stroke="rgba(56,189,248,0.28)" stroke-width="0.5"/>
+      <rect x="245" y="43" width="18" height="18" rx="1" fill="rgba(56,189,248,0.95)"  stroke="rgba(56,189,248,0.28)" stroke-width="0.5"/>
+      <!-- Fila 3 -->
+      <rect x="155" y="61" width="18" height="18" rx="1" fill="rgba(56,189,248,0.06)"  stroke="rgba(56,189,248,0.28)" stroke-width="0.5"/>
+      <rect x="173" y="61" width="18" height="18" rx="1" fill="rgba(56,189,248,0.20)"  stroke="rgba(56,189,248,0.28)" stroke-width="0.5"/>
+      <rect x="191" y="61" width="18" height="18" rx="1" fill="rgba(56,189,248,0.40)"  stroke="rgba(56,189,248,0.28)" stroke-width="0.5"/>
+      <rect x="209" y="61" width="18" height="18" rx="1" fill="rgba(56,189,248,0.58)"  stroke="rgba(56,189,248,0.28)" stroke-width="0.5"/>
+      <rect x="227" y="61" width="18" height="18" rx="1" fill="rgba(56,189,248,0.40)"  stroke="rgba(56,189,248,0.28)" stroke-width="0.5"/>
+      <rect x="245" y="61" width="18" height="18" rx="1" fill="rgba(56,189,248,0.72)"  stroke="rgba(56,189,248,0.28)" stroke-width="0.5"/>
+      <!-- Fila 4 -->
+      <rect x="155" y="79" width="18" height="18" rx="1" fill="rgba(56,189,248,0.10)"  stroke="rgba(56,189,248,0.28)" stroke-width="0.5"/>
+      <rect x="173" y="79" width="18" height="18" rx="1" fill="rgba(56,189,248,0.24)"  stroke="rgba(56,189,248,0.28)" stroke-width="0.5"/>
+      <rect x="191" y="79" width="18" height="18" rx="1" fill="rgba(56,189,248,0.32)"  stroke="rgba(56,189,248,0.28)" stroke-width="0.5"/>
+      <rect x="209" y="79" width="18" height="18" rx="1" fill="rgba(56,189,248,0.48)"  stroke="rgba(56,189,248,0.28)" stroke-width="0.5"/>
+      <rect x="227" y="79" width="18" height="18" rx="1" fill="rgba(56,189,248,0.62)"  stroke="rgba(56,189,248,0.28)" stroke-width="0.5"/>
+      <rect x="245" y="79" width="18" height="18" rx="1" fill="rgba(56,189,248,0.55)"  stroke="rgba(56,189,248,0.28)" stroke-width="0.5"/>
+    </svg>`;
+  }
+
+  /* ── Banner Variables Gaussianas ── */
+  if (isGaussian) {
+    return `
+    <svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg"
+         style="position:absolute;inset:0;width:100%;height:100%;opacity:0.80">
+      <defs>
+        <radialGradient id="grd-${t.id}" cx="50%" cy="50%" r="55%">
+          <stop offset="0%" stop-color="#34d399" stop-opacity="0.12"/>
+          <stop offset="100%" stop-color="#34d399" stop-opacity="0"/>
+        </radialGradient>
+        <pattern id="grid-${t.id}" width="18" height="18" patternUnits="userSpaceOnUse">
+          <path d="M18 0H0V18" fill="none" stroke="#34d399" stroke-width="0.3" opacity="0.14"/>
+        </pattern>
+      </defs>
+      <rect width="300" height="120" fill="url(#grd-${t.id})"/>
+      <rect width="300" height="120" fill="url(#grid-${t.id})"/>
+
+      <!-- Eje X e Y -->
+      <line x1="20" y1="95" x2="200" y2="95" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
+      <line x1="20" y1="18" x2="20"  y2="95" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
+
+      <!-- Curva gaussiana principal (μ=0, σ=1) — campana verde -->
+      <path d="M 22,94 Q 40,93 55,88 Q 70,80 85,60 Q 100,38 110,20 Q 120,10 125,9 Q 130,10 140,20 Q 150,38 163,60 Q 175,80 188,88 Q 198,93 200,94"
+            fill="rgba(52,211,153,0.14)" stroke="#34d399" stroke-width="1.8" opacity="0.9"/>
+
+      <!-- Curva más ancha σ=2 — teal suave -->
+      <path d="M 22,94 Q 50,93 70,85 Q 90,72 105,55 Q 115,40 125,34 Q 135,40 145,55 Q 160,72 180,85 Q 198,93 200,94"
+            fill="none" stroke="rgba(56,189,248,0.45)" stroke-width="1" opacity="0.7" stroke-dasharray="5,3"/>
+
+      <!-- Línea μ -->
+      <line x1="125" y1="9" x2="125" y2="95" stroke="rgba(52,211,153,0.5)" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="125" y="108" text-anchor="middle" font-size="7" fill="#34d399" opacity="0.85" font-family="monospace">μ</text>
+
+      <!-- σ flechas -->
+      <line x1="80" y1="88" x2="125" y2="88" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+      <text x="100" y="86" text-anchor="middle" font-size="6" fill="rgba(255,255,255,0.45)" font-family="monospace">σ</text>
+      <line x1="125" y1="88" x2="170" y2="88" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+      <text x="150" y="86" text-anchor="middle" font-size="6" fill="rgba(255,255,255,0.45)" font-family="monospace">σ</text>
+
+      <!-- Panel fórmulas (derecha) -->
+      <rect x="212" y="18" width="80" height="72" rx="6"
+            fill="rgba(52,211,153,0.08)" stroke="rgba(52,211,153,0.28)" stroke-width="0.8"/>
+      <text x="252" y="32" text-anchor="middle" font-size="6.5" fill="#34d399" opacity="0.95" font-family="monospace" font-weight="bold">N(μ, σ²)</text>
+      <text x="252" y="46" text-anchor="middle" font-size="5.2" fill="#34d399" opacity="0.8" font-family="monospace">E[X] = μ</text>
+      <text x="252" y="57" text-anchor="middle" font-size="5.2" fill="#34d399" opacity="0.8" font-family="monospace">Var[X] = σ²</text>
+      <text x="252" y="68" text-anchor="middle" font-size="5.2" fill="#a8c0d6" opacity="0.7" font-family="monospace">Z=(X−μ)/σ</text>
+      <text x="252" y="80" text-anchor="middle" font-size="5" fill="#a8c0d6" opacity="0.6" font-family="monospace">68−95−99.7%</text>
+    </svg>`;
+  }
+
+  /* ── Banner Moran Torre / Reina ── */
+  if (isMoranW) {
+    return `
+    <svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg"
+         style="position:absolute;inset:0;width:100%;height:100%;opacity:0.80">
+      <defs>
+        <radialGradient id="grd-${t.id}" cx="50%" cy="50%" r="55%">
+          <stop offset="0%" stop-color="#a78bfa" stop-opacity="0.12"/>
+          <stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect width="300" height="120" fill="url(#grd-${t.id})"/>
+      <!-- TORRE izq -->
+      <text x="62" y="16" text-anchor="middle" font-size="6.5" fill="#a78bfa" opacity="0.85" font-family="monospace" font-weight="bold">TORRE (Rook)</text>
+      <rect x="22" y="22" width="28" height="28" rx="2" fill="rgba(167,139,248,0.08)" stroke="rgba(167,139,248,0.25)" stroke-width="0.8"/>
+      <rect x="50" y="22" width="28" height="28" rx="2" fill="rgba(167,139,248,0.22)" stroke="#a78bfa" stroke-width="1"/>
+      <rect x="78" y="22" width="28" height="28" rx="2" fill="rgba(167,139,248,0.08)" stroke="rgba(167,139,248,0.25)" stroke-width="0.8"/>
+      <rect x="22" y="50" width="28" height="28" rx="2" fill="rgba(167,139,248,0.22)" stroke="#a78bfa" stroke-width="1"/>
+      <rect x="50" y="50" width="28" height="28" rx="2" fill="rgba(167,139,248,0.32)" stroke="#a78bfa" stroke-width="1.5"/>
+      <text x="64" y="68" text-anchor="middle" font-size="10" fill="#a78bfa" font-family="monospace" font-weight="bold">i</text>
+      <rect x="78" y="50" width="28" height="28" rx="2" fill="rgba(167,139,248,0.22)" stroke="#a78bfa" stroke-width="1"/>
+      <rect x="22" y="78" width="28" height="28" rx="2" fill="rgba(167,139,248,0.08)" stroke="rgba(167,139,248,0.25)" stroke-width="0.8"/>
+      <rect x="50" y="78" width="28" height="28" rx="2" fill="rgba(167,139,248,0.22)" stroke="#a78bfa" stroke-width="1"/>
+      <rect x="78" y="78" width="28" height="28" rx="2" fill="rgba(167,139,248,0.08)" stroke="rgba(167,139,248,0.25)" stroke-width="0.8"/>
+      <text x="64" y="40" text-anchor="middle" font-size="7" fill="#a78bfa" opacity="0.75" font-family="monospace">j</text>
+      <text x="64" y="96" text-anchor="middle" font-size="7" fill="#a78bfa" opacity="0.75" font-family="monospace">j</text>
+      <text x="36" y="68" text-anchor="middle" font-size="7" fill="#a78bfa" opacity="0.75" font-family="monospace">j</text>
+      <text x="92" y="68" text-anchor="middle" font-size="7" fill="#a78bfa" opacity="0.75" font-family="monospace">j</text>
+      <text x="36" y="108" font-size="5" fill="rgba(255,255,255,0.3)" font-family="monospace">4 vecinos</text>
+      <!-- Divisor -->
+      <line x1="150" y1="10" x2="150" y2="110" stroke="rgba(255,255,255,0.09)" stroke-width="1" stroke-dasharray="5,4"/>
+      <!-- REINA der -->
+      <text x="226" y="16" text-anchor="middle" font-size="6.5" fill="#34d399" opacity="0.85" font-family="monospace" font-weight="bold">REINA (Queen)</text>
+      <rect x="162" y="22" width="28" height="28" rx="2" fill="rgba(52,211,153,0.22)" stroke="#34d399" stroke-width="1"/>
+      <rect x="190" y="22" width="28" height="28" rx="2" fill="rgba(52,211,153,0.22)" stroke="#34d399" stroke-width="1"/>
+      <rect x="218" y="22" width="28" height="28" rx="2" fill="rgba(52,211,153,0.22)" stroke="#34d399" stroke-width="1"/>
+      <rect x="162" y="50" width="28" height="28" rx="2" fill="rgba(52,211,153,0.22)" stroke="#34d399" stroke-width="1"/>
+      <rect x="190" y="50" width="28" height="28" rx="2" fill="rgba(52,211,153,0.32)" stroke="#34d399" stroke-width="1.5"/>
+      <text x="204" y="68" text-anchor="middle" font-size="10" fill="#34d399" font-family="monospace" font-weight="bold">i</text>
+      <rect x="218" y="50" width="28" height="28" rx="2" fill="rgba(52,211,153,0.22)" stroke="#34d399" stroke-width="1"/>
+      <rect x="162" y="78" width="28" height="28" rx="2" fill="rgba(52,211,153,0.22)" stroke="#34d399" stroke-width="1"/>
+      <rect x="190" y="78" width="28" height="28" rx="2" fill="rgba(52,211,153,0.22)" stroke="#34d399" stroke-width="1"/>
+      <rect x="218" y="78" width="28" height="28" rx="2" fill="rgba(52,211,153,0.22)" stroke="#34d399" stroke-width="1"/>
+      <text x="176" y="40" text-anchor="middle" font-size="7" fill="#34d399" opacity="0.7" font-family="monospace">j</text>
+      <text x="204" y="40" text-anchor="middle" font-size="7" fill="#34d399" opacity="0.7" font-family="monospace">j</text>
+      <text x="232" y="40" text-anchor="middle" font-size="7" fill="#34d399" opacity="0.7" font-family="monospace">j</text>
+      <text x="176" y="68" text-anchor="middle" font-size="7" fill="#34d399" opacity="0.7" font-family="monospace">j</text>
+      <text x="232" y="68" text-anchor="middle" font-size="7" fill="#34d399" opacity="0.7" font-family="monospace">j</text>
+      <text x="176" y="96" text-anchor="middle" font-size="7" fill="#34d399" opacity="0.7" font-family="monospace">j</text>
+      <text x="204" y="96" text-anchor="middle" font-size="7" fill="#34d399" opacity="0.7" font-family="monospace">j</text>
+      <text x="232" y="96" text-anchor="middle" font-size="7" fill="#34d399" opacity="0.7" font-family="monospace">j</text>
+      <text x="162" y="108" font-size="5" fill="rgba(255,255,255,0.3)" font-family="monospace">8 vecinos (lados + diagonales)</text>
+    </svg>`;
+  }
+
+  /* ── Banner Obesidad Perú ── */
+  if (isObesidad) {
+    return `
+    <svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg"
+         style="position:absolute;inset:0;width:100%;height:100%;opacity:0.80">
+      <defs>
+        <radialGradient id="grd-${t.id}" cx="35%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#f97316" stop-opacity="0.13"/>
+          <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
+        </radialGradient>
+        <pattern id="pg-${t.id}" width="16" height="16" patternUnits="userSpaceOnUse">
+          <path d="M16 0H0V16" fill="none" stroke="#f97316" stroke-width="0.25" opacity="0.14"/>
+        </pattern>
+      </defs>
+      <rect width="300" height="120" fill="url(#grd-${t.id})"/>
+      <rect width="300" height="120" fill="url(#pg-${t.id})"/>
+      <!-- Silueta Perú -->
+      <path d="M 55,14 C 65,11 80,18 85,28 C 90,40 88,55 80,65 C 72,75 68,86 70,98 C 72,106 60,108 52,102 C 44,96 38,85 40,72 C 42,60 36,45 38,32 C 40,20 48,17 55,14 Z"
+            fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+      <!-- Clústeres Alto-Alto costa (rojo) -->
+      <circle cx="60" cy="33" r="6.5" fill="#dc2626" opacity="0.70"/>
+      <circle cx="62" cy="47" r="5.5" fill="#dc2626" opacity="0.65"/>
+      <circle cx="58" cy="59" r="5"   fill="#f97316" opacity="0.60"/>
+      <circle cx="63" cy="71" r="4.5" fill="#f97316" opacity="0.55"/>
+      <circle cx="74" cy="54" r="4"   fill="#f97316" opacity="0.48"/>
+      <!-- Clústeres Bajo-Bajo sierra (azul) -->
+      <circle cx="47" cy="50" r="3.5" fill="#3b82f6" opacity="0.55"/>
+      <circle cx="43" cy="64" r="4"   fill="#3b82f6" opacity="0.50"/>
+      <circle cx="49" cy="77" r="3"   fill="#3b82f6" opacity="0.45"/>
+      <!-- Panel resultados -->
+      <rect x="118" y="13" width="174" height="90" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.09)" stroke-width="0.7"/>
+      <text x="205" y="29" text-anchor="middle" font-size="7.5" fill="#eef3fb" opacity="0.9" font-family="monospace" font-weight="bold">ENDES 2022 — n = 33 429</text>
+      <text x="128" y="44" font-size="6" fill="#f97316" opacity="0.9" font-family="monospace">Prevalencia cruda:</text>
+      <text x="285" y="44" text-anchor="end" font-size="6.5" fill="#f97316" font-family="monospace" font-weight="bold">28.9%</text>
+      <text x="128" y="57" font-size="5.8" fill="#a8c0d6" opacity="0.8" font-family="monospace">Moran (conglo.):</text>
+      <text x="285" y="57" text-anchor="end" font-size="5.8" fill="#38bdf8" font-family="monospace">I=0.2198  z=29.91</text>
+      <text x="128" y="69" font-size="5.8" fill="#a8c0d6" opacity="0.8" font-family="monospace">Moran (distrito):</text>
+      <text x="285" y="69" text-anchor="end" font-size="5.8" fill="#38bdf8" font-family="monospace">I=0.2846  z=10.11</text>
+      <line x1="128" y1="76" x2="284" y2="76" stroke="rgba(255,255,255,0.07)" stroke-width="0.7"/>
+      <rect x="128" y="82" width="11" height="8" rx="1" fill="#dc2626" opacity="0.75"/>
+      <text x="143" y="89" font-size="5.5" fill="#a8c0d6" opacity="0.8" font-family="monospace">Alto-Alto: Lima, Tumbes, Piura</text>
+      <rect x="128" y="93" width="11" height="8" rx="1" fill="#3b82f6" opacity="0.65"/>
+      <text x="143" y="100" font-size="5.5" fill="#a8c0d6" opacity="0.8" font-family="monospace">Bajo-Bajo: Corredor andino</text>
+    </svg>`;
+  }
+
+  /* ── Banner Índices Vegetación Kriging ── */
+  if (isKrigVeg) {
+    return `
+    <svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg"
+         style="position:absolute;inset:0;width:100%;height:100%;opacity:0.80">
+      <defs>
+        <radialGradient id="grd-${t.id}" cx="38%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#a3e635" stop-opacity="0.12"/>
+          <stop offset="100%" stop-color="#a3e635" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect width="300" height="120" fill="url(#grd-${t.id})"/>
+      <!-- Semivariograma -->
+      <text x="78" y="13" text-anchor="middle" font-size="6" fill="#a3e635" opacity="0.8" font-family="monospace" font-weight="bold">Semivariograma</text>
+      <line x1="18" y1="95" x2="152" y2="95" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
+      <line x1="18" y1="18" x2="18"  y2="95" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
+      <!-- Pts estación seca -->
+      <circle cx="28" cy="78" r="2.5" fill="#a3e635" opacity="0.85"/>
+      <circle cx="42" cy="64" r="2.5" fill="#a3e635" opacity="0.80"/>
+      <circle cx="58" cy="52" r="2.5" fill="#a3e635" opacity="0.78"/>
+      <circle cx="75" cy="44" r="2.5" fill="#a3e635" opacity="0.75"/>
+      <circle cx="92" cy="40" r="2.5" fill="#a3e635" opacity="0.72"/>
+      <circle cx="110" cy="38" r="2.5" fill="#a3e635" opacity="0.70"/>
+      <circle cx="128" cy="38" r="2"  fill="#a3e635" opacity="0.68"/>
+      <circle cx="146" cy="38" r="2"  fill="#a3e635" opacity="0.65"/>
+      <path d="M 18,95 Q 55,58 92,38 Q 118,33 152,37" fill="none" stroke="#a3e635" stroke-width="1.5" opacity="0.82"/>
+      <!-- Pts estación húmeda -->
+      <circle cx="28" cy="88" r="2"  fill="#38bdf8" opacity="0.65"/>
+      <circle cx="38" cy="70" r="2"  fill="#38bdf8" opacity="0.62"/>
+      <circle cx="50" cy="48" r="2"  fill="#38bdf8" opacity="0.60"/>
+      <circle cx="65" cy="32" r="2"  fill="#38bdf8" opacity="0.58"/>
+      <circle cx="80" cy="28" r="2"  fill="#38bdf8" opacity="0.55"/>
+      <path d="M 18,95 Q 42,52 65,28 Q 80,20 152,27" fill="none" stroke="#38bdf8" stroke-width="1.2" opacity="0.60" stroke-dasharray="4,3"/>
+      <!-- Divisor -->
+      <line x1="157" y1="10" x2="157" y2="110" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+      <!-- Panel indices -->
+      <text x="228" y="16" text-anchor="middle" font-size="7" fill="#eef3fb" opacity="0.85" font-family="monospace" font-weight="bold">Índices · Puno</text>
+      <rect x="164" y="22" width="128" height="78" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="0.7"/>
+      <text x="172" y="37" font-size="6" fill="#a3e635" opacity="0.92" font-family="monospace" font-weight="bold">NDVI</text>
+      <text x="172" y="47" font-size="5" fill="#a8c0d6" opacity="0.75" font-family="monospace">Seca: ~108 km | Húm: ~16 km</text>
+      <text x="172" y="59" font-size="6" fill="#34d399" opacity="0.92" font-family="monospace" font-weight="bold">EVI / SAVI</text>
+      <text x="172" y="69" font-size="5" fill="#a8c0d6" opacity="0.75" font-family="monospace">500 pts · 16 850 nodos</text>
+      <text x="172" y="81" font-size="6" fill="#38bdf8" opacity="0.92" font-family="monospace" font-weight="bold">NDMI</text>
+      <text x="172" y="91" font-size="5" fill="#a8c0d6" opacity="0.75" font-family="monospace">Kriging indicativo · 2 cortes</text>
+      <!-- Leyenda -->
+      <line x1="165" y1="108" x2="183" y2="108" stroke="#a3e635" stroke-width="1.5" opacity="0.8"/>
+      <text x="186" y="111" font-size="5" fill="#a8c0d6" opacity="0.7" font-family="monospace">Seca</text>
+      <line x1="212" y1="108" x2="230" y2="108" stroke="#38bdf8" stroke-width="1.2" opacity="0.65" stroke-dasharray="3,2"/>
+      <text x="233" y="111" font-size="5" fill="#a8c0d6" opacity="0.7" font-family="monospace">Húmeda</text>
+    </svg>`;
+  }
+
+  /* ── Banner Bofedales Carabaya SARIMA/RSASE ── */
+  if (isBofedal) {
+    return `
+    <svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg"
+         style="position:absolute;inset:0;width:100%;height:100%;opacity:0.80">
+      <defs>
+        <radialGradient id="grd-${t.id}" cx="50%" cy="40%" r="55%">
+          <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.11"/>
+          <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect width="300" height="120" fill="url(#grd-${t.id})"/>
+      <!-- Banda confianza -->
+      <path d="M 18,65 C 30,60 45,52 60,55 C 75,58 90,48 105,50 C 120,52 135,44 150,47 C 160,49 170,55 180,50 Q 195,42 210,48 L 210,62 Q 195,58 180,64 C 170,69 160,65 150,63 C 135,60 120,68 105,66 C 90,68 75,74 60,71 C 45,68 30,76 18,79 Z"
+            fill="rgba(56,189,248,0.09)" stroke="none"/>
+      <!-- Serie bofedal -->
+      <path d="M 18,72 C 30,68 45,60 60,63 C 75,66 90,56 105,58 C 120,60 135,52 150,55 C 160,57 175,50 190,52 C 200,53 210,55 220,50"
+            fill="none" stroke="#38bdf8" stroke-width="1.6" opacity="0.85"/>
+      <!-- Forecast punteado -->
+      <path d="M 220,50 C 232,46 244,48 256,44 C 264,42 272,45 280,43"
+            fill="none" stroke="#38bdf8" stroke-width="1.2" opacity="0.50" stroke-dasharray="5,3"/>
+      <!-- Serie control pajonal -->
+      <path d="M 18,78 C 30,74 45,70 60,72 C 75,74 90,66 105,68 C 120,70 135,62 150,64 C 165,66 180,58 195,56 C 207,55 220,54 230,48"
+            fill="none" stroke="#34d399" stroke-width="1.2" opacity="0.65" stroke-dasharray="4,2"/>
+      <!-- Eje X -->
+      <line x1="18" y1="95" x2="290" y2="95" stroke="rgba(255,255,255,0.14)" stroke-width="0.8"/>
+      <text x="18"  y="106" font-size="5" fill="rgba(255,255,255,0.35)" font-family="monospace">2019</text>
+      <text x="110" y="106" text-anchor="middle" font-size="5" fill="rgba(255,255,255,0.35)" font-family="monospace">2022</text>
+      <text x="210" y="106" text-anchor="middle" font-size="5" fill="rgba(255,255,255,0.35)" font-family="monospace">2025</text>
+      <text x="256" y="106" text-anchor="middle" font-size="5" fill="rgba(56,189,248,0.45)" font-family="monospace">forecast</text>
+      <line x1="220" y1="14" x2="220" y2="95" stroke="rgba(255,255,255,0.11)" stroke-width="0.8" stroke-dasharray="4,3"/>
+      <!-- Badge RSASE -->
+      <rect x="14" y="12" width="74" height="20" rx="4" fill="rgba(167,139,250,0.14)" stroke="rgba(167,139,250,0.35)" stroke-width="0.8"/>
+      <text x="51" y="20" text-anchor="middle" font-size="5.5" fill="#a78bfa" opacity="0.95" font-family="monospace" font-weight="bold">Enviado RSASE</text>
+      <text x="51" y="28" text-anchor="middle" font-size="4.8" fill="#a78bfa" opacity="0.7" font-family="monospace">Elsevier · 2026</text>
+      <!-- Badge resultados -->
+      <rect x="156" y="12" width="132" height="30" rx="4" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.24)" stroke-width="0.7"/>
+      <text x="165" y="22" font-size="5.5" fill="#38bdf8" opacity="0.9" font-family="monospace">SARIMA · Kriging · Moran's I</text>
+      <text x="165" y="32" font-size="5" fill="#a8c0d6" opacity="0.75" font-family="monospace">NDVI · SAVI · EVI · NDMI · 2019–2025</text>
+      <!-- Leyenda -->
+      <line x1="16" y1="114" x2="30" y2="114" stroke="#38bdf8" stroke-width="1.5" opacity="0.8"/>
+      <text x="33" y="117" font-size="5" fill="#a8c0d6" opacity="0.75" font-family="monospace">Bofedal</text>
+      <line x1="78" y1="114" x2="92" y2="114" stroke="#34d399" stroke-width="1.2" stroke-dasharray="3,2" opacity="0.7"/>
+      <text x="95" y="117" font-size="5" fill="#a8c0d6" opacity="0.75" font-family="monospace">Control (pajonal)</text>
+    </svg>`;
+  }
+
+  /* ── Banner App Autocorrelación ── */
   if (isAutocorr) {
     return `
     <svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg"
